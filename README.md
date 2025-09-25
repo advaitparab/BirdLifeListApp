@@ -88,22 +88,22 @@ A birding life list is a collection of the bird species you have seen in the wil
 
 ### Class Digram Description
 
-### Model Classes:
+**Model Classes:**
 - Bird is the class where the overarching database of birds is set up
 - MyList is the class where the user-made life list is created and stored
 - User holds user information
 - Waypoint holds data on locations the user creates, so they can reuse the same location without putting in the same information everytime
 
-### Service Classes:
+**Service Classes:**
 - BirdService contains methods like search and filter for the whole bird database
 - MyListService has those same methods but only searches the user made list
 
-### UI Classes:
+**UI Classes:**
 - HomePage has the UI elements for the home page
 - MyListPage has the UI elements for the page displaying the user made list
 - BirdDetailsPage has the UI elements for the page that displays all the information on a specific bird
 
-### DAO Classes:
+**DAO Classes:**
 - BirdDAO has database tools for the Bird database
 - MyListDAO has database tools for the MyList database
 
