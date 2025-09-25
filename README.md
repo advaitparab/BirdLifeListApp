@@ -137,10 +137,10 @@ A birding life list is a collection of the bird species you have seen in the wil
 
 ## Team Members and Roles
 *All roles will help/share the workload for all roles*
-UI Specialist: Harsh Patel
-Business Logic/Persistence: Sydney Schalk
-DevOps/Github Admin: Advait Parab
-Product Owner/Scrum Master: Grace Holscher
+- UI Specialist: Harsh Patel
+- Business Logic/Persistence: Sydney Schalk
+- DevOps/Github Admin: Advait Parab
+- Product Owner/Scrum Master: Grace Holscher
 
 ## Milestones
 [Milestone 1](https://github.com/advaitparab/BirdLifeListApp/milestone/1)
