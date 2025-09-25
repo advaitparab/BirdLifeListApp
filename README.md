@@ -87,3 +87,65 @@ A birding life list is a collection of the bird species you have seen in the wil
 ![MyWingedWaypointsClassDiagram](https://github.com/advaitparab/BirdLifeListApp/blob/main/Class%20Diagram%20-%20Winged%20Waypoints.png)
 
 ### Class Digram Description
+
+### Model Classes:
+- Bird is the class where the overarching database of birds is set up
+- MyList is the class where the user-made life list is created and stored
+- User holds user information
+- Waypoint holds data on locations the user creates, so they can reuse the same location without putting in the same information everytime
+
+### Service Classes:
+- BirdService contains methods like search and filter for the whole bird database
+- MyListService has those same methods but only searches the user made list
+
+### UI Classes:
+- HomePage has the UI elements for the home page
+- MyListPage has the UI elements for the page displaying the user made list
+- BirdDetailsPage has the UI elements for the page that displays all the information on a specific bird
+
+### DAO Classes:
+- BirdDAO has database tools for the Bird database
+- MyListDAO has database tools for the MyList database
+
+## JSON Schema
+> {
+>   "$schema": "http://json-schema.org/draft-07/schema#",
+>   "title": "Bird",
+>   "type": "object",
+>   "properties": {
+>     "birdId": { "type": "integer" },
+>     "commonName": { "type": "string" },
+>     "speciesName": { "type": "string" },
+>     "color": { "type": "string" },
+>     "defaultLocation": { "type": "string" },
+>     "description": { "type": "string" },
+>     "images": {
+>       "type": "array",
+>       "items": { "type": "string", "format": "uri" }
+>     },
+>     "userData": {
+>       "type": "object",
+>       "properties": {
+>         "dateSeen": { "type": "string", "format": "date" },
+>        "locationSeen": { "type": "string" },
+>         "notes": { "type": "string" }
+>       }
+>     }
+>   },
+>   "required": ["birdId", "commonName", "speciesName", "color"]
+> }
+
+## Team Members and Roles
+*All roles will help/share the workload for all roles*
+UI Specialist: Harsh Patel
+Business Logic/Persistence: Sydney Schalk
+DevOps/Github Admin: Advait Parab
+Product Owner/Scrum Master: Grace Holscher
+
+## Milestones
+[Milestone 1](https://github.com/advaitparab/BirdLifeListApp/milestone/1)
+[Milestone 2](https://github.com/advaitparab/BirdLifeListApp/milestone/2)
+[Milestone 3](https://github.com/advaitparab/BirdLifeListApp/milestone/3)
+
+##Standup
+[We meet 6:00pm Eastern on Wenesday on Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_NTA3YzdhOGYtZWFmMS00ZTAyLWFiODMtZTEzZTEzMDcxMDU1%40thread.v2/0?context=%7b%22Tid%22%3a%22f5222e6c-5fc6-48eb-8f03-73db18203b63%22%2c%22Oid%22%3a%226e65e3a8-fa49-4627-86d6-1467671124b9%22%7d)
