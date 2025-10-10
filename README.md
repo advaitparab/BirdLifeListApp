@@ -1,4 +1,4 @@
-# BirdLifeListApp
+# MyWingedWaypoints
 
 ## Introduction
 
