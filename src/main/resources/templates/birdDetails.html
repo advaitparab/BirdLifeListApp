@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bird Details</title>
+    <!--<title th:text="${bird.name}">-->
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/myWaypoints">My Winged Waypoints</a>
+    </nav>
+
+    <!-- Header -->
+    <h1 th:text="${bird.name}">Bird Name</h1>
+    <h3><em th:text="${bird.scientificName}">Scientific Name</em></h3>
+
+    <!-- Bird Info -->
+    <section>
+        <p><strong>Location:</strong> <span th:text="${bird.location}"> No Location Listed</span></p>
+        <p>
+            <strong>Color:</strong>
+            <span th:text="${bird.color}"> No Color Listed</span>
+        </p>
+
+        <p>
+            <strong>Description:</strong>
+            <span th:text="${bird.description}"> No Description </span>
+        </p>
+
+    </section>
+
+    <!-- Date Seen -->
+    <section>
+        <label for="dateSeen"><strong>Date Seen:</strong></label>
+        <input type="date" id="dateSeen" name="dateSeen" />
+    </section>
+
+    <!-- Notes -->
+    <section>
+        <label for="notes"><strong>Notes:</strong></label><br>
+        <textarea id="notes" name="notes" rows="5" cols="50" placeholder="notes..."></textarea>
+    </section>
+
+    <!-- Images -->
+    <section>
+        <h4>Photos</h4>
+        <div>
+            <!-- Existing images -->
+            <img th:each="img : ${bird.images}" th:src="@{${img.url}}" alt="Bird photo" width="200" />
+        </div>
+        <label for="newImage"><strong>Add Photo:</strong></label>
+        <input type="file" id="newImage" name="newImage" accept="image/*" />
+    </section>
+
+
+    <!-- Delete Button (non-functional for now) -->
+    <form method="post" th:action="@{'/birds/delete/' + ${bird.id}}">
+        <!--use image as button-->
+        <button type="submit">Delete</button>
+    </form>
+
+    <!-- Save Button -->
+    <form method="post" th:action="@{'/birds/save/' + ${bird.id}}">
+        <button type="submit">Save</button>
+    </form>
+
+
+</body>
+
+</html>

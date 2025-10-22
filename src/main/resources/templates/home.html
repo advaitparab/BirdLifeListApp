@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/home">Home</a>
+        <a href="/myWaypoints">My Winged Waypoints</a>
+    </nav>
+
+    <!-- Header -->
+    <h1>Home</h1>
+
+    <!-- Search and Filters -->
+    <form method="get" action="/home">
+        <!-- Search -->
+        <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
+
+        <!-- Color Filter -->
+        <select name="color" onchange="this.form.submit()">
+            <option value="">Color</option>
+                <option th:each="color : ${colors}"
+                        th:value="${color}"
+                        th:text="${color}"
+                        th:selected="${color == selectedColor}">
+                </option>
+        </select>
+
+        <!-- Location Filter-->
+        <select name="location" onchange="this.form.submit()">
+            <option value="">Location</option>
+                <option th:each="loc : ${locations}"
+                        th:value="${loc}"
+                        th:text="${loc}"
+                        th:selected="${loc == selectedLocation}">
+                </option>
+        </select>
+    </form>
+
+    <!-- Bird List -->
+    <ul>
+        <li th:each="bird : ${birds}">
+            <h2 th:text="${bird.name}">Bird Name</h2>
+            <h4>
+                <em th:text="${bird.scientificName}">Scientific Name</em>
+            </h4>
+            <p>
+                <strong>Location:</strong>
+                <span th:text="${bird.location}"> No Location Listed</span>
+            </p>
+            <p>
+                <strong>Color:</strong>
+                <span th:text="${bird.color}"> No Color Listed</span>
+            </p>
+            <p>
+                <strong>Description:</strong>
+                <span th:text="${bird.description}"> No Description </span>
+            </p>
+
+            <!--Add button-->
+            <form method="post" th:action="@{'/birds/add/' + ${bird.id}}">
+                <!--use image as button-->
+                <button type="submit">Add</button>
+            </form>
+
+        </li>
+    </ul>
+
+</body>
+</html>

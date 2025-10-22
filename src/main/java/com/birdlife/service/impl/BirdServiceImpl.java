@@ -94,4 +94,5 @@ public class BirdServiceImpl implements BirdService {
     public void delete(Long id) {
         repo.deleteById(id);
     }
+
 }

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="MyWingedWaypoints" />
+        <module name="my-winged-waypoints" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17" />
