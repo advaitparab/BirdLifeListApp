@@ -5,42 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/BirdService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/BirdlifeApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/BirdlifeApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/BirdController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/controller/BirdController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/MyListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/controller/MyListController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/dto/BirdDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/dto/BirdDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/dto/MyListEntryDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/dto/MyListEntryDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/dto/ObservationUpsertDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/dto/ObservationUpsertDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird$BirdBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird$BirdBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry$MyListEntryBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry$MyListEntryBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/User$UserBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Waypoint$WaypointBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Waypoint$WaypointBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Waypoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Waypoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/repo/BirdRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/repo/BirdRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/repo/MyListRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/repo/MyListRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/repo/UserRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/repo/UserRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/repo/WaypointRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/repo/WaypointRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/BirdService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/service/BirdService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/MyListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/service/MyListService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/BirdServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/BirdServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/web/ApiError.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/web/ApiError.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/web/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/web/GlobalExceptionHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,31 +62,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.BirdlifeApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/harsh/IdeaProjects/MyWingedWaypoints/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BirdlifeApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/harsh/OneDrive/Documents/GitHub/BirdLifeListApp",
+    "onboarding.tips.debug.path": "C:/Users/harsh/IdeaProjects/MyWingedWaypoints/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
-      </set>
-    </attachedChunks>
-  </component>
+}]]></component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="" />

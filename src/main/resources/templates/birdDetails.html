@@ -1,75 +1,54 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Bird Details</title>
-    <!--<title th:text="${bird.name}">-->
 </head>
-
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="/home">Home</a>
-        <a href="/myWaypoints">My Winged Waypoints</a>
-    </nav>
+<nav>
+    <a th:href="@{/home}">Home</a>
+    <a th:href="@{/myWaypoints}">My Winged Waypoints</a>
+</nav>
 
-    <!-- Header -->
-    <h1 th:text="${bird.name}">Bird Name</h1>
-    <h3><em th:text="${bird.scientificName}">Scientific Name</em></h3>
+<h1 th:text="${bird != null ? bird.commonName : 'Bird Details'}">Bird Details</h1>
 
-    <!-- Bird Info -->
-    <section>
-        <p><strong>Location:</strong> <span th:text="${bird.location}"> No Location Listed</span></p>
-        <p>
-            <strong>Color:</strong>
-            <span th:text="${bird.color}"> No Color Listed</span>
-        </p>
+<section th:if="${bird != null}">
+    <p><strong>ID:</strong> <span th:text="${bird.birdId}">1</span></p>
+    <p><strong>Species:</strong> <span th:text="${bird.speciesName}">Genus species</span></p>
+    <p><strong>Color:</strong> <span th:text="${bird.color}">Color</span></p>
+    <p><strong>Default Location:</strong> <span th:text="${bird.defaultLocation}">Location</span></p>
+    <p><strong>Description:</strong> <span th:text="${bird.description}">Description</span></p>
 
-        <p>
-            <strong>Description:</strong>
-            <span th:text="${bird.description}"> No Description </span>
-        </p>
-
-    </section>
-
-    <!-- Date Seen -->
-    <section>
-        <label for="dateSeen"><strong>Date Seen:</strong></label>
-        <input type="date" id="dateSeen" name="dateSeen" />
-    </section>
-
-    <!-- Notes -->
-    <section>
-        <label for="notes"><strong>Notes:</strong></label><br>
-        <textarea id="notes" name="notes" rows="5" cols="50" placeholder="notes..."></textarea>
-    </section>
-
-    <!-- Images -->
-    <section>
-        <h4>Photos</h4>
-        <div>
-            <!-- Existing images -->
-            <img th:each="img : ${bird.images}" th:src="@{${img.url}}" alt="Bird photo" width="200" />
-        </div>
-        <label for="newImage"><strong>Add Photo:</strong></label>
-        <input type="file" id="newImage" name="newImage" accept="image/*" />
-    </section>
-
-
-    <!-- Delete Button (non-functional for now) -->
-    <form method="post" th:action="@{'/birds/delete/' + ${bird.id}}">
-        <!--use image as button-->
-        <button type="submit">Delete</button>
-    </form>
-
-    <!-- Save Button -->
-    <form method="post" th:action="@{'/birds/save/' + ${bird.id}}">
+    <h3>Edit</h3>
+    <form method="post" th:action="@{'/birds/save/' + ${bird.birdId}}">
+        <label>Common Name
+            <input type="text" name="commonName" th:value="${bird.commonName}">
+        </label><br>
+        <label>Species Name
+            <input type="text" name="speciesName" th:value="${bird.speciesName}">
+        </label><br>
+        <label>Color
+            <input type="text" name="color" th:value="${bird.color}">
+        </label><br>
+        <label>Default Location
+            <input type="text" name="defaultLocation" th:value="${bird.defaultLocation}">
+        </label><br>
+        <label>Description
+            <textarea name="description" rows="4" th:text="${bird.description}"></textarea>
+        </label><br>
         <button type="submit">Save</button>
     </form>
 
+    <form method="post" th:action="@{'/birds/delete/' + ${bird.birdId}}" style="margin-top:1rem">
+        <button type="submit">Delete</button>
+    </form>
+</section>
+
+<section th:if="${bird == null}">
+    <p>Bird not found.</p>
+</section>
 
 </body>
-
 </html>
+

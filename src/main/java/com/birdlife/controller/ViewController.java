@@ -1,23 +1,49 @@
 package com.birdlife.controller;
 
 import com.birdlife.dto.BirdDto;
-import com.birdlife.entity.Bird;
 import com.birdlife.service.BirdService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class ViewController {
 
-    @Autowired
-    private BirdService birdService;
+    private final BirdService birdService;
 
-    @GetMapping("/home")
-    public String home() {
+    public ViewController(BirdService birdService) {
+        this.birdService = birdService;
+    }
+
+    /** quick sanity check: http://localhost:8080/ping -> OK */
+    @ResponseBody
+    @GetMapping("/ping")
+    public String ping() { return "OK"; }
+
+    /** Map both / and /home. Never 500s if the repo fails — it shows a friendly error instead. */
+    @GetMapping({"/", "/home"})
+    public String home(@RequestParam(name = "q", required = false) String q,
+                       @RequestParam(name = "color", required = false) String color,
+                       @RequestParam(name = "location", required = false) String location,
+                       Model model) {
+        List<BirdDto> birds = Collections.emptyList();
+        String loadError = null;
+
+        try {
+            // searchAdvanced accepts nulls; returns filtered list
+            birds = birdService.searchAdvanced(q, color, location);
+        } catch (Exception ex) {
+            loadError = ex.getClass().getSimpleName() + ": " + String.valueOf(ex.getMessage());
+        }
+
+        model.addAttribute("birds", birds);
+        model.addAttribute("q", q);
+        model.addAttribute("color", color);
+        model.addAttribute("location", location);
+        model.addAttribute("loadError", loadError);
         return "home";
     }
 
@@ -27,10 +53,35 @@ public class ViewController {
     }
 
     @GetMapping("/birds/details/{id}")
-    public String birdDetails(@PathVariable Long id, Model model) {
-        BirdDto bird = birdService.getById(id);
-        model.addAttribute("bird", bird);
+    public String birdDetails(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("bird", birdService.getById(id));
         return "birdDetails";
     }
 
+    /** Save and Delete use BirdService signatures from your codebase */
+    @PostMapping("/birds/save/{id}")
+    public String saveBird(@PathVariable("id") Long id,
+                           @RequestParam("commonName") String commonName,
+                           @RequestParam("speciesName") String speciesName,
+                           @RequestParam(name = "color", required = false) String color,
+                           @RequestParam(name = "defaultLocation", required = false) String defaultLocation,
+                           @RequestParam(name = "description", required = false) String description) {
+
+        BirdDto dto = new BirdDto();
+        dto.setBirdId(id);
+        dto.setCommonName(commonName);
+        dto.setSpeciesName(speciesName);
+        dto.setColor(color);
+        dto.setDefaultLocation(defaultLocation);
+        dto.setDescription(description);
+
+        birdService.update(id, dto);
+        return "redirect:/birds/details/" + id;
+    }
+
+    @PostMapping("/birds/delete/{id}")
+    public String deleteBird(@PathVariable("id") Long id) {
+        birdService.delete(id);
+        return "redirect:/home";
+    }
 }
