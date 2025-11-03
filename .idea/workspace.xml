@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/web/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/web/GlobalExceptionHandler.java" afterDir="false" />
+    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Add global exception handler">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/Validation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +75,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="BirdlifeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="my-winged-waypoints" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.birdlife.BirdlifeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -92,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1760036236834</updated>
       <workItem from="1760561506903" duration="8000" />
-      <workItem from="1762128192758" duration="2541000" />
+      <workItem from="1762128192758" duration="3892000" />
     </task>
     <task id="LOCAL-00001" summary="backend code">
       <option name="closed" value="true" />
@@ -102,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760117158358</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add global exception handler">
+      <option name="closed" value="true" />
+      <created>1762131102760</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762131102760</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +137,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="backend code" />
-    <option name="LAST_COMMIT_MESSAGE" value="backend code" />
+    <MESSAGE value="Add global exception handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add global exception handler" />
   </component>
 </project>
