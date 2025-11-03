@@ -3,6 +3,8 @@ package com.birdlife.repo;
 import com.birdlife.entity.Bird;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 public interface BirdRepository extends JpaRepository<Bird, Long> {
@@ -13,5 +15,7 @@ public interface BirdRepository extends JpaRepository<Bird, Long> {
             "and (:color is null or lower(b.color) = lower(:color)) " +
             "and (:loc is null or lower(b.defaultLocation) = lower(:loc))")
 
-    List<Bird> search(String q, String color, String loc);
+    List<Bird> search(@Param("q") String q,
+                      @Param("color") String color,
+                      @Param("loc") String loc);
 }
