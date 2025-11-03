@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/repo/BirdRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/repo/BirdRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird$BirdBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird$BirdBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry$MyListEntryBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry$MyListEntryBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Towedm-CodeReview-1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Towedm__codereview1",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/harsh/OneDrive/Documents/GitHub/BirdLifeListApp",
@@ -98,11 +90,43 @@
       <option name="project" value="LOCAL" />
       <updated>1760117158358</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1.added @param annotations needed for query mapping fixed error doing so&#10;2.Fixed SQL to match actual column names so database works for birds (left rest for you guys to learn from my fix and fix the rest)&#10;3.Updated application.yml so Hibernate creates the schema before data.sql runs, and so data.sql always executes.">
+      <option name="closed" value="true" />
+      <created>1762137534554</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762137534554</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Towedm-CodeReview-1" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="backend code" />
-    <option name="LAST_COMMIT_MESSAGE" value="backend code" />
+    <MESSAGE value="1.added @param annotations needed for query mapping fixed error doing so&#10;2.Fixed SQL to match actual column names so database works for birds (left rest for you guys to learn from my fix and fix the rest)&#10;3.Updated application.yml so Hibernate creates the schema before data.sql runs, and so data.sql always executes." />
+    <option name="LAST_COMMIT_MESSAGE" value="1.added @param annotations needed for query mapping fixed error doing so&#10;2.Fixed SQL to match actual column names so database works for birds (left rest for you guys to learn from my fix and fix the rest)&#10;3.Updated application.yml so Hibernate creates the schema before data.sql runs, and so data.sql always executes." />
   </component>
 </project>
