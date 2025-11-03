@@ -2,6 +2,7 @@ package com.birdlife.controller;
 
 import com.birdlife.dto.BirdDto;
 import com.birdlife.service.BirdService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,9 +34,36 @@ public class BirdController {
                                         @RequestParam(required = false) String location) {
         return service.searchAdvanced(name, color, location);
     }
-
-    @GetMapping("/{id}") public BirdDto get(@PathVariable Long id) { return service.getById(id); }
+    /**
+     * Retrieves a bird by ID.
+     *
+     * @param id the unique ID of the bird
+     * @return ResponseEntity containing the bird data if found, or 404 if not found
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<?> get(@PathVariable Long id) {
+        try {
+            BirdDto bird = service.getById(id);
+            return ResponseEntity.ok(bird);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @PostMapping public BirdDto create(@Valid @RequestBody BirdDto dto){ return service.create(dto); }
     @PutMapping("/{id}") public BirdDto update(@PathVariable Long id, @Valid @RequestBody BirdDto dto){ return service.update(id,dto); }
-    @DeleteMapping("/{id}") public ResponseEntity<Void> delete(@PathVariable Long id){ service.delete(id); return ResponseEntity.noContent().build(); }
+    /**
+     * Deletes a bird by ID.
+     *
+     * @param id the ID of the bird to delete
+     * @return HTTP 204 if successful, or 404 if not found
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        try {
+            service.delete(id);
+            return ResponseEntity.noContent().build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
