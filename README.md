@@ -153,3 +153,5 @@ A birding life list is a collection of the bird species you have seen in the wil
 ## Standup
 
 [We meet 6:00pm Eastern on Wenesday on Teams](https://teams.microsoft.com/l/meetup-join/19%3ameeting_NTA3YzdhOGYtZWFmMS00ZTAyLWFiODMtZTEzZTEzMDcxMDU1%40thread.v2/0?context=%7b%22Tid%22%3a%22f5222e6c-5fc6-48eb-8f03-73db18203b63%22%2c%22Oid%22%3a%226e65e3a8-fa49-4627-86d6-1467671124b9%22%7d)
+
+
