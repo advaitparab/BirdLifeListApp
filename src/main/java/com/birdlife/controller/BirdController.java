@@ -19,10 +19,19 @@ public class BirdController {
         return service.search(q);
     }
 
-    @GetMapping("/filter")
-    public List<BirdDto> filter(@RequestParam(required=false) String color,
-                                @RequestParam(required=false, name="location") String location) {
-        return service.searchAdvanced(null, color, location);
+    /**
+     * Performs an advanced bird search by optional parameters such as name, color, and location.
+     * So I renamed /filter to /search/advanced and removed the null argument
+     * @param name optional name filter
+     * @param color optional color filter
+     * @param location optional location filter
+     * @return a list of birds matching the criteria
+     */
+    @GetMapping("/search/advanced")
+    public List<BirdDto> searchAdvanced(@RequestParam(required = false) String name,
+                                        @RequestParam(required = false) String color,
+                                        @RequestParam(required = false) String location) {
+        return service.searchAdvanced(name, color, location);
     }
 
     @GetMapping("/{id}") public BirdDto get(@PathVariable Long id) { return service.getById(id); }
