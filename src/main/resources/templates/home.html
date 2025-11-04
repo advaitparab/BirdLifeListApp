@@ -26,10 +26,38 @@
 </div>
 
 <form method="get" th:action="@{/home}">
-    <label>Query <input type="text" name="q" th:value="${q}"></label>
+    <!--<label>Query <input type="text" name="q" th:value="${q}"></label>
     <label>Color <input type="text" name="color" th:value="${color}"></label>
     <label>Location <input type="text" name="location" th:value="${location}"></label>
-    <button type="submit">Search</button>
+    <button type="submit">Search</button>-->
+
+
+        <!-- Search -->
+        <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
+
+        <!-- Color Filter --> <!--need to add a list of selectable colors-->
+        <select name="color" onchange="this.form.submit()">
+            <option value="">Color</option>
+            <option th:each="color : ${colors}"
+                    th:value="${color}"
+                    th:text="${color}"
+                    th:selected="${color == selectedColor}">
+            </option>
+        </select>
+
+        <!-- Location Filter--> <!--need to add a list of selectable locations-->
+        <select name="location" onchange="this.form.submit()">
+            <option value="">Location</option>
+            <option th:each="loc : ${locations}"
+                    th:value="${loc}"
+                    th:text="${loc}"
+                    th:selected="${loc == selectedLocation}">
+            </option>
+        </select>
+
+        <button type="submit">Search</button>
+
+</form>
 </form>
 
 <table th:if="${birds != null}">
