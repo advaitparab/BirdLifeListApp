@@ -44,6 +44,12 @@ public class ViewController {
         model.addAttribute("color", color);
         model.addAttribute("location", location);
         model.addAttribute("loadError", loadError);
+        List<String> colors = birdService.getAllColors();
+        List<String> locations = birdService.getAllLocations();
+        model.addAttribute("colors", colors);
+        model.addAttribute("locations", locations);
+        model.addAttribute("selectedColor", color);
+        model.addAttribute("selectedLocation", location);
         return "home";
     }
 
