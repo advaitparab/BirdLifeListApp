@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="didn't go through in last push">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/BirdDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/BirdDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/repo/BirdRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/repo/BirdRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/BirdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/BirdService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +45,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/advaitparab/BirdLifeListApp.git",
-    "accountId": "6a3a6a44-02e9-492c-8c3b-ac42397789ea"
+    "accountId": "554c2c7a-5f09-4897-a174-8ef8848b0aaf"
   }
 }]]></component>
   <component name="ProblemsViewState">
@@ -54,29 +59,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.BirdlifeApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/harsh/OneDrive/Documents/GitHub/BirdLifeListApp&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/harsh/IdeaProjects/MyWingedWaypoints/src/main/java/org/example/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BirdlifeApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "dev",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/harsh/OneDrive/Documents/GitHub/BirdLifeListApp",
+    "onboarding.tips.debug.path": "C:/Users/harsh/IdeaProjects/MyWingedWaypoints/src/main/java/org/example/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tadpo\IdeaProjects\BirdLifeListApp" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
       </set>
     </attachedChunks>
   </component>

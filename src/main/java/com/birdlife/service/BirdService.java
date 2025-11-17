@@ -1,8 +1,6 @@
 package com.birdlife.service;
 
 import com.birdlife.dto.BirdDto;
-import com.birdlife.entity.Bird;
-
 import java.util.List;
 
 public interface BirdService {
@@ -15,5 +13,6 @@ public interface BirdService {
     BirdDto update(Long id, BirdDto dto);
     void delete(Long id);
 
-
+    List<String> getAllColors();
+    List<String> getAllLocations();
 }
