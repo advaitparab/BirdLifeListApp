@@ -13,12 +13,12 @@ import java.util.List;
 public class DataInitializer implements CommandLineRunner {
 
     private final BirdRepository birdRepository;
-    private final UserRepository userRepository;
+    //private final UserRepository userRepository;
 
 
-    public DataInitializer(BirdRepository birdRepository, UserRepository userRepository) {
+    public DataInitializer(BirdRepository birdRepository) { //, UserRepository userRepository
         this.birdRepository = birdRepository;
-        this.userRepository = userRepository;
+        //this.userRepository = userRepository;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DataInitializer implements CommandLineRunner {
 
 
 
-        if(birdRepository.count() == 2) { // Only load if DB is empty
+        if(birdRepository.count() == 1) { // Only load if DB is empty
 
             /*Bird cardinal = Bird.builder()
                     .commonName("Northern Cardinal")

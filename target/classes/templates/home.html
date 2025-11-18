@@ -5,7 +5,7 @@
     <title>Home</title>
     <style>
             body {
-                 font-family: monospace;
+                 font-family: "Segoe UI", "Arial Rounded MT Bold", sans-serif;
                  margin: 0;
                  background: #f5f5f5;
              }
@@ -15,7 +15,7 @@
                  display: flex;
                  justify-content: space-between;
                  align-items: center;
-                 background: #0366d6;
+                 background: #3d5dbd;
                  color: white;
                  padding: 1rem 2rem;
                  position: sticky;
@@ -32,14 +32,16 @@
              .navlinks a {
                  margin-left: 1rem;
                  color: white;
+                 text-decoration: none;
              }
 
              .navlinks a:hover {
-                 color:darkblue;
+                 color: darkblue;
              }
 
 /*page title*/
              h1 {
+                 color: #4f4f4f;
                  margin: 1.5rem 1.5rem;
                  font-size: 2rem;
              }
@@ -53,14 +55,12 @@
              }
 
              input[type="text"], select {
+                 color: #4f4f4f;
                  padding: .5rem .75rem;
-                 border: 1px solid;
+                 border: 1px solid #ccc;
                  border-radius: 4px;
                  font-size: 1rem;
              }
-
-
-
 
              .bird-list {
                 display: flex;
@@ -76,76 +76,96 @@
                  box-shadow: 0 2px 3px lightgray;
              }
 
+
+
+
+/* Card titles - name and species name */
+            .card-titles {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
 /*bird name font*/
              .bird-card h2 {
-                 margin-top: 2;
                  font-size: 2rem;
-                 color: #0366d6;
+                 color: #3d5dbd;
+                 margin: 0;
              }
 
-/* Details - species, color, location */
-             .bird-card p {
-                 margin: .5rem 0;
-                 font-size: 1rem;
-             }
+/* species name */
+            .bird-card h4 {
+                color: #4f4f4f;
+                font-style: italic;
+                margin: 0;
+                padding-top: 0.25rem;
+                padding-left: 0.5rem;
+            }
 
 
-/* Details pinned left */
-            .bird-card .details {
+/* details + buttons container */
+            .bird-card .card-body {
                 display: flex;
                 justify-content: space-between;
-                align-items: center;
-                gap: 1rem;
             }
+
+
+
+/* Details - color, location, description */
+            .bird-card .details {
+                color: #4f4f4f;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 0;
+                gap: 0;
+                padding-top: 1rem;
+                padding-left: 1rem;
+            }
+
+            .bird-card .details p {
+                margin: 0.25rem;
+            }
+
+
+
 
 
 /* BUTTONS */
-            .bird-card .buttons {
-                display: flex;
-                justify-content: flex-end;
-                gap: .5rem;
-            }
-
-/* add button */
-            button {
-                 padding: .5rem 1rem;
-                 background: #0366d6;
-                 color: white;
-                 border: none;
-                 border-radius: 4px;
-                 font-weight: 500;
-             }
-
-/* hover over add */
-             button:hover {
-                 background: #024ea2;
-             }
-
-
-/* details as a button */
-             .bird-card .buttons a {
+            button, .bird-card .buttons a, .bird-card .buttons button {
                 display: inline-block;
-                padding: .5rem .9rem;
+                padding: 0.5rem 1.25rem;
                 line-height: 1.2;
-                background-color: #0366d6;
+                background-color: #3d5dbd;
                 color: white;
-                border-radius: 4px;
-                font-size: 0.95rem;
+                border-radius: 6px;
+                border: none;
+                font-weight: 500;
+                font-family: inherit;
+                cursor: pointer;
+                font-size: 1rem;
+                text-decoration: none;
             }
 
-/* hover over details */
-            .bird-card .buttons a:hover {
+
+/* Hover effect */
+            button:hover,
+            .bird-card .buttons a:hover,
+            .bird-card .buttons button:hover {
                 background-color: #024ea2;
             }
+
 
 
             .alert{
                  margin: 1.5rem 1.5rem;
                  padding: .5rem .75rem;
-                 border: 1px solid;
                  border-radius: 4px;
-                 background: yellow;
+                 background: darkgrey;
              }
+
+
+
 
     </style>
 
@@ -168,18 +188,13 @@
 </div>
 
 <form method="get" th:action="@{/home}">
-    <!--<label>Query <input type="text" name="q" th:value="${q}"></label>
-    <label>Color <input type="text" name="color" th:value="${color}"></label>
-    <label>Location <input type="text" name="location" th:value="${location}"></label>
-    <button type="submit">Search</button>-->
-
 
         <!-- Search -->
         <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
 
         <!-- Color Filter --> <!--need to add a list of selectable colors-->
         <select name="color" onchange="this.form.submit()">
-            <option value="">Color</option>
+            <option value="" disabled selected>Color</option>
             <option th:each="color : ${colors}"
                     th:value="${color}"
                     th:text="${color}"
@@ -189,7 +204,7 @@
 
         <!-- Location Filter--> <!--need to add a list of selectable locations-->
         <select name="location" onchange="this.form.submit()">
-            <option value="">Location</option>
+            <option value="" disabled selected>Location</option>
             <option th:each="loc : ${locations}"
                     th:value="${loc}"
                     th:text="${loc}"
@@ -205,23 +220,28 @@
 
         <div class="bird-card" th:each="bird : ${birds}">
 
-            <h2 th:text="${bird.commonName}">Blue Jay</h2>
-
-            <div class="details">
-            <p><strong>Species:</strong> <span th:text="${bird.speciesName}">Cyanocitta cristata</span></p>
-                <p><strong>Color:</strong> <span th:text="${bird.color}">Blue</span></p>
-                <p><strong>Location:</strong> <span th:text="${bird.defaultLocation}">Ohio</span></p>
+            <div class="card-titles">
+                <h2 th:text="${bird.commonName}">Blue Jay</h2>
+                <h4><span th:text="${bird.speciesName}">Cyanocitta cristata</span></h4>
             </div>
 
-            <div class="buttons">
+            <div class="card-body">
 
-                <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
+                <div class="details">
+                    <p><strong>Color:</strong> <span th:text="${bird.color}">Blue</span></p>
+                    <p><strong>Location:</strong> <span th:text="${bird.defaultLocation}">Ohio</span></p>
+                    <p><strong>Description:</strong> <span th:text="${bird.description}">this is a test description</span></p>
+                </div>
 
-                <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
-                    <button type="submit">Add</button>
-                </form>
+                <div class="buttons">
+                    <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
+                    <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
+                        <button type="submit">Add</button>
+                    </form>
+                </div>
 
             </div>
+
 
         </div>
 
@@ -261,6 +281,6 @@
         </tbody>
     </table>-->
 
-<p th:if="${birds != null and #lists.isEmpty(birds)}">No birds found.</p>
+<p class="alert" th:if="${birds != null and #lists.isEmpty(birds)}">No birds found.</p>
 </body>
 </html>

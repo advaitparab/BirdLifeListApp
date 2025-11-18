@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Could not figure out my list functions, will start style here soon">
+    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Details page is coming alone still needs final touches and layout fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/birdlife.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/birdlife.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/config/DataInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/config/DataInitializer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +46,7 @@
   }
 }]]></component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Security Analysis" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -154,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763442073424</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Details page is coming alone still needs final touches and layout fixes">
+      <option name="closed" value="true" />
+      <created>1763452435148</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1763452435148</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +183,7 @@
     <MESSAGE value="Database now exists, is persistent, and has some basic data" />
     <MESSAGE value="Added Notes to the Details page, about to start adding myList function" />
     <MESSAGE value="Could not figure out my list functions, will start style here soon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Could not figure out my list functions, will start style here soon" />
+    <MESSAGE value="Details page is coming alone still needs final touches and layout fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Details page is coming alone still needs final touches and layout fixes" />
   </component>
 </project>
