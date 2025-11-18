@@ -3,57 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>Bird Details</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
 </head>
 <body>
 
-<nav>
-    <a th:href="@{/home}">Home</a>
-    <a th:href="@{/myWaypoints}">My Winged Waypoints</a>
+<nav class="navbar">
+    <div class="logo">Winged Waypoints</div>
+    <div class="navlinks">
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/myWaypoints}">My Winged Waypoints</a>
+    </div>
 </nav>
 
-<h1 th:text="${bird != null ? bird.commonName : 'Bird Details'}">Bird Details</h1>
+<!--<section class="bird-card" th:if="${bird != null}">-->
 
-<section th:if="${bird != null}">
-    <p><strong>ID:</strong> <span th:text="${bird.birdId}">1</span></p>
-    <p><strong>Species:</strong> <span th:text="${bird.speciesName}">Genus species</span></p>
-    <p><strong>Color:</strong> <span th:text="${bird.color}">Color</span></p>
-    <p><strong>Common Locations:</strong> <span th:text="${bird.defaultLocation}">Location</span></p>
-    <p><strong>Description:</strong> <span th:text="${bird.description}">Description</span></p>
+<div class="bird-card" th:if="${bird != null}">
 
-    <form method="post" th:action="@{'/birds/save/' + ${bird.birdId}}">
 
-        <!-- Personal Notes -->
-            <label><strong>Personal Notes:</strong>
-                <textarea name="notes" rows="5" cols="50" th:text="${bird.notes}"></textarea>
+    <div class="card-titles">
+        <h2 th:text="${bird != null ? bird.commonName : 'Bird Details'}">Blue Jay</h2>
+        <h4><span th:text="${bird.speciesName}">Cyanocitta cristata</span></h4>
+    </div>
+
+    <div class="details">
+        <!--<p><strong>Species:</strong> <span th:text="${bird.speciesName}">Genus species</span></p>-->
+        <!--<p><strong>ID:</strong> <span th:text="${bird.birdId}">1</span></p>-->
+        <p><strong>Color:</strong> <span th:text="${bird.color}">Blue</span></p>
+        <p><strong>Common Locations:</strong> <span th:text="${bird.defaultLocation}">Ohio</span></p>
+        <p><strong>Description:</strong> <span th:text="${bird.description}">this is a test description</span></p>
+
+        <div class="notes">
+            <!-- Personal Notes -->
+            <label for="notes"><strong>Personal Notes:</strong></label><br>
+            <textarea id="notes" name="notes" rows="3" cols="50" th:text="${bird.notes}"></textarea>
+        </div>
+
+        <!-- Date Seen - uncomment when the connections have been made
+        <div class="date">
+
+            <label><strong>Date Seen:</strong>
+                <input type="date" name="dateSeen" />
             </label><br>
+        </div>-->
 
+        <!-- Images - uncomment when the connections have been made - more styling may be needed
+        <div class="image">
+            <label><strong>Photos:</strong>
+                <div>
+                    <img th:each="img : ${bird.images}" th:src="@{${img.url}}" alt="Bird photo" width="200" />
+                </div>
+            </label><br>
+        </div>
+    </div>-->
 
-        <!-- Date Seen
-        <label><strong>Date Seen:</strong>
-            <input type="date" name="dateSeen" />
-        </label><br>-->
+    <div class="details-buttons">
+        <form th:action="@{'/birds/save/' + ${bird.birdId}}" method="post">
+            <button type="submit">Save</button>
+        </form>
+        <a href="#" onclick="history.back(); return false;">Back</a>
+    </div>
 
+</div>
 
-        <!-- Images
-        <label><strong>Photos:</strong>
-            <div>
-                <img th:each="img : ${bird.images}" th:src="@{${img.url}}" alt="Bird photo" width="200" />
-            </div>
-        </label><br> -->
-
-         <button type="submit">Save</button>
-
-
-    </form>
-
-    <form method="post" th:action="@{'/birds/delete/' + ${bird.birdId}}" style="margin-top:1rem">
-    </form>
-</section>
-
-<section th:if="${bird == null}">
+<section class="alert" th:if="${bird == null}">
     <p>Bird not found.</p>
 </section>
 
 </body>
 </html>
-
