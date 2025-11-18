@@ -4,19 +4,170 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <style>
-        body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
-        nav a { margin-right: 1rem; }
-        table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
-        th, td { border: 1px solid #e5e5e5; padding: .5rem .6rem; text-align: left; }
-        th { background: #fafafa; }
-        .alert { padding:.75rem 1rem; background:#fff8e1; border:1px solid #ddd; margin:1rem 0; }
+            body {
+                 font-family: monospace;
+                 margin: 0;
+                 background: #f5f5f5;
+             }
+
+/*nav bar*/
+             .navbar {
+                 display: flex;
+                 justify-content: space-between;
+                 align-items: center;
+                 background: #0366d6;
+                 color: white;
+                 padding: 1rem 2rem;
+                 position: sticky;
+             }
+
+             .logo {
+                 font-size: 1.5rem;
+                 font-weight: bold;
+             }
+
+
+
+/*page nav links */
+             .navlinks a {
+                 margin-left: 1rem;
+                 color: white;
+             }
+
+             .navlinks a:hover {
+                 color:darkblue;
+             }
+
+/*page title*/
+             h1 {
+                 margin: 1.5rem 1.5rem;
+                 font-size: 2rem;
+             }
+
+/*search area*/
+             form {
+                 display: flex;
+                 gap: 1rem;
+                 flex-wrap: wrap;
+                 margin: 1.5rem 1.5rem;
+             }
+
+             input[type="text"], select {
+                 padding: .5rem .75rem;
+                 border: 1px solid;
+                 border-radius: 4px;
+                 font-size: 1rem;
+             }
+
+
+
+             .bird-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+             }
+
+/*bird card*/
+             .bird-card {
+                 background: white;
+                 border-radius: 8px;
+                 padding: 2rem;
+                 box-shadow: 0 2px 3px lightgray;
+             }
+
+/*bird name font*/
+             .bird-card h2 {
+                 margin-top: 2;
+                 font-size: 2rem;
+                 color: #0366d6;
+             }
+
+/* Card titles - name and species name */
+            .bird-card h4 {
+                font-style: italic;
+            }
+
+/* Details - color, location */
+            .bird-card .details {
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            }
+
+
+            .species-name {
+
+            }
+
+
+/* BUTTONS */
+            .bird-card .buttons {
+                display: flex; /* this makes the details button all funny*/
+                justify-content: flex-end;
+                gap: .5rem;
+            }
+
+
+/* add button */
+            button {
+                 padding: .5rem 1rem;
+                 background: #0366d6;
+                 color: white;
+                 border: none;
+                 border-radius: 4px;
+                 font-weight: 500;
+             }
+
+/* hover over add */
+             button:hover {
+                 background: #024ea2;
+             }
+
+
+/* details as a button */
+             .bird-card .buttons a {
+                display: inline-block;
+                padding: 0.4rem 0.8rem;
+                line-height: 1.2;
+                background-color: #0366d6;
+                color: white;
+                border-radius: 4px;
+                border: none;
+                font-weight: 500;
+            }
+
+
+
+
+/* hover over details */
+            .bird-card .buttons a:hover {
+                background-color: #024ea2;
+            }
+
+
+            .alert{
+                 margin: 1.5rem 1.5rem;
+                 padding: .5rem .75rem;
+                 border: 1px solid;
+                 border-radius: 4px;
+                 background: yellow;
+             }
+
+
+
+
     </style>
+
 </head>
 <body>
-<nav>
-    <a th:href="@{/home}">Home</a>
-    <a th:href="@{/myWaypoints}">My Winged Waypoints</a>
+<nav class="navbar">
+    <div class="logo">Winged Waypoints</div>
+    <div class="navlinks">
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/myWaypoints}">My Winged Waypoints</a>
+    </div>
 </nav>
+
 
 <h1>Home</h1>
 
@@ -59,38 +210,67 @@
 
 </form>
 
-<table th:if="${birds != null}">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Common Name</th>
-        <th>Species</th>
-        <th>Color</th>
-        <th>Default Location</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="bird : ${birds}">
-        <td th:text="${bird.birdId}">1</td>
-        <td th:text="${bird.commonName}">Blue Jay</td>
-        <td th:text="${bird.speciesName}">Cyanocitta cristata</td>
-        <td th:text="${bird.color}">Blue</td>
-        <td th:text="${bird.defaultLocation}">Ohio</td>
-        <td>
-            <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
+    <div class="bird-list" th:if="${birds != null}">
 
-            <!--<form method="post" th:action="@{'/birds/add/' + ${bird.birdId}}" style="display:inline">
-                <button type="submit">Add</button>
-            </form>-->
-            <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
-                <button type="submit">Add</button>
-            </form>
+        <div class="bird-card" th:each="bird : ${birds}">
 
-        </td>
-    </tr>
-    </tbody>
-</table>
+            <div class="card-titles">
+                <h2 th:text="${bird.commonName}">Blue Jay</h2>
+                <h4><span th:text="${bird.speciesName}">Cyanocitta cristata</span></h4>
+            </div>
+
+            <div class="details">
+                <p><strong>Color:</strong> <span th:text="${bird.color}">Blue</span></p>
+                <p><strong>Location:</strong> <span th:text="${bird.defaultLocation}">Ohio</span></p>
+            </div>
+
+            <div class="buttons">
+
+                <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
+
+                <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
+                    <button type="submit">Add</button>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!--
+    <table th:if="${birds != null}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Common Name</th>
+            <th>Species</th>
+            <th>Color</th>
+            <th>Default Location</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bird : ${birds}">
+            <td th:text="${bird.birdId}">1</td>
+            <td th:text="${bird.commonName}">Blue Jay</td>
+            <td th:text="${bird.speciesName}">Cyanocitta cristata</td>
+            <td th:text="${bird.color}">Blue</td>
+            <td th:text="${bird.defaultLocation}">Ohio</td>
+            <td>
+                <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
+
+
+                <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
+                    <button type="submit">Add</button>
+                </form>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>-->
 
 <p th:if="${birds != null and #lists.isEmpty(birds)}">No birds found.</p>
 </body>
