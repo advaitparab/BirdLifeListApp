@@ -4,6 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>My Winged Waypoints</title>
+
+    <style>
+        body { font-family: system-ui, Arial, sans-serif; margin: 2rem; }
+        nav a { margin-right: 1rem; }
+        table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+        th, td { border: 1px solid #e5e5e5; padding: .5rem .6rem; text-align: left; }
+        th { background: #fafafa; }
+        .alert { padding:.75rem 1rem; background:#fff8e1; border:1px solid #ddd; margin:1rem 0; }
+    </style>
+
 </head>
 
 <body>
@@ -17,12 +27,17 @@
     <!-- Header -->
     <h1>My Winged Waypoints</h1>
 
-    <!-- Search and Filters -->
-    <form method="get" action="/myWaypoints">
+    <!-- show friendly error if repo/service threw -->
+    <div class="alert" th:if="${loadError}">
+        Could not load birds. <small th:text="${loadError}">details</small>
+    </div>
+
+    <form method="get" th:action="@{/myWaypoints}">
+
         <!-- Search -->
         <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
 
-        <!-- Color Filter -->
+        <!-- Color Filter --> <!--need to add a list of selectable colors-->
         <select name="color" onchange="this.form.submit()">
             <option value="">Color</option>
             <option th:each="color : ${colors}"
@@ -32,7 +47,7 @@
             </option>
         </select>
 
-        <!-- Location Filter-->
+        <!-- Location Filter--> <!--need to add a list of selectable locations-->
         <select name="location" onchange="this.form.submit()">
             <option value="">Location</option>
             <option th:each="loc : ${locations}"
@@ -41,39 +56,49 @@
                     th:selected="${loc == selectedLocation}">
             </option>
         </select>
+
+        <button type="submit">Search</button>
+
     </form>
 
     <!-- Bird List -->
-    <ul>
-        <li th:each="bird : ${birds}">
-            <h2 th:text="${bird.name}">Bird Name</h2>
-            <h4>
-                <em th:text="${bird.scientificName}">Scientific Name</em>
-            </h4>
-            <p>
-                <strong>Location:</strong>
-                <span th:text="${bird.location}"> No Location Listed</span>
-            </p>
-            <p>
-                <strong>Color:</strong>
-                <span th:text="${bird.color}"> No Color Listed</span>
-            </p>
-            <p>
-                <strong>Description:</strong>
-                <span th:text="${bird.description}"> No Description </span>
-            </p>
+    <table th:if="${waypoints != null}">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Common Name</th>
+            <th>Species</th>
+            <th>Color</th>
+            <th>Default Location</th>
+            <th>Date Seen</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="bird : ${waypoints}">
+            <td th:text="${bird.birdId}">1</td>
+            <td th:text="${bird.commonName}">Blue Jay</td>
+            <td th:text="${bird.speciesName}">Cyanocitta cristata</td>
+            <td th:text="${bird.color}">Blue</td>
+            <td th:text="${bird.defaultLocation}">Ohio</td>
+            <td th:text="${entry.dateSeen}">2025-11-17</td>
+            <td>
+                <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
 
-            <!--Edit button-->
-            <!--use image as button-->
-            <form method="get" th:action="@{'/birds/details/' + ${bird.id}}">
-                <button type="submit">Edit</button>
-            </form>
+                <!--<form method="post" th:action="@{'/birds/add/' + ${bird.birdId}}" style="display:inline">
+                    <button type="submit">Add</button>
+                </form>-->
+                <form th:action="@{'/mylist/remove/' + ${bird.birdId}}" method="post" style="display:inline">
+                    <button type="submit">Delete</button>
+                </form>
 
-        </li>
-    </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
+    <p th:if="${birds != null and #lists.isEmpty(birds)}">No birds found.</p>
 </body>
-
 </html>
 
 

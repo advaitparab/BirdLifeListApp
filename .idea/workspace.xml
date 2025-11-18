@@ -4,28 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Database now exists, is persistent, and has some basic data">
+    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Could not figure out my list functions, will start style here soon">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/birdlife.lock.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/birdlife.lock.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/birdlife.lock.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/data/birdlife.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/birdlife.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/BirdDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/BirdDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/Bird.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/Bird.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/MyListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/controller/MyListController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/config/DataInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/config/DataInitializer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/dto/BirdDto$BirdDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/dto/BirdDto$BirdDtoBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/dto/BirdDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/dto/BirdDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird$BirdBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird$BirdBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/BirdServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/MyListService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +141,23 @@
       <option name="project" value="LOCAL" />
       <updated>1762731824682</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Notes to the Details page, about to start adding myList function">
+      <option name="closed" value="true" />
+      <created>1763426312570</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763426312570</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added Notes to the Details page, about to start adding myList function">
+      <option name="closed" value="true" />
+      <created>1763426324764</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763426324764</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +174,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="backend code" />
     <MESSAGE value="Database now exists, is persistent, and has some basic data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Database now exists, is persistent, and has some basic data" />
+    <MESSAGE value="Added Notes to the Details page, about to start adding myList function" />
+    <MESSAGE value="Could not figure out my list functions, will start style here soon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Could not figure out my list functions, will start style here soon" />
   </component>
 </project>

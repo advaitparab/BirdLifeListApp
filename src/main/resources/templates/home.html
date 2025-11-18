@@ -58,7 +58,6 @@
         <button type="submit">Search</button>
 
 </form>
-</form>
 
 <table th:if="${birds != null}">
     <thead>
@@ -80,9 +79,14 @@
         <td th:text="${bird.defaultLocation}">Ohio</td>
         <td>
             <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
-            <form method="post" th:action="@{'/birds/add/' + ${bird.birdId}}" style="display:inline">
+
+            <!--<form method="post" th:action="@{'/birds/add/' + ${bird.birdId}}" style="display:inline">
+                <button type="submit">Add</button>
+            </form>-->
+            <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
                 <button type="submit">Add</button>
             </form>
+
         </td>
     </tr>
     </tbody>
