@@ -71,7 +71,8 @@ public class ViewController {
                            @RequestParam("speciesName") String speciesName,
                            @RequestParam(name = "color", required = false) String color,
                            @RequestParam(name = "defaultLocation", required = false) String defaultLocation,
-                           @RequestParam(name = "description", required = false) String description) {
+                           @RequestParam(name = "description", required = false) String description,
+                           @RequestParam(name = "notes", required = false) String notes) {
 
         BirdDto dto = new BirdDto();
         dto.setBirdId(id);
@@ -80,6 +81,7 @@ public class ViewController {
         dto.setColor(color);
         dto.setDefaultLocation(defaultLocation);
         dto.setDescription(description);
+        dto.setNotes(notes);
 
         birdService.update(id, dto);
         return "redirect:/birds/details/" + id;

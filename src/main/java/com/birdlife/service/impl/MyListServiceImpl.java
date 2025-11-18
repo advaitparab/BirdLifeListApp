@@ -8,7 +8,7 @@ import com.birdlife.entity.User;
 import com.birdlife.repo.BirdRepository;
 import com.birdlife.repo.MyListRepository;
 import com.birdlife.repo.UserRepository;
-import com.birdlife.service.MyListService;
+import com.birdlife.service.impl.MyListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

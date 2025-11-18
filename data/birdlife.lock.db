@@ -1,6 +1,6 @@
 #FileLock
-#Mon Nov 17 16:19:57 EST 2025
-server=192.168.50.156\:49773
-hostName=SydsComputer
+#Mon Nov 17 19:16:08 EST 2025
+server=192.168.1.205\:59674
+hostName=Graces_Laptop.lan1
 method=file
-id=19a93b052bb2f7919723677bb74050115fdc0b43e23
+id=19a94519bddba46d76f55b61187de6c26c386c34591

@@ -17,27 +17,33 @@
     <p><strong>ID:</strong> <span th:text="${bird.birdId}">1</span></p>
     <p><strong>Species:</strong> <span th:text="${bird.speciesName}">Genus species</span></p>
     <p><strong>Color:</strong> <span th:text="${bird.color}">Color</span></p>
-    <p><strong>Common Locations:</strong> <span th:text="${bird.commonLocations}">Location</span></p>
+    <p><strong>Common Locations:</strong> <span th:text="${bird.defaultLocation}">Location</span></p>
     <p><strong>Description:</strong> <span th:text="${bird.description}">Description</span></p>
 
-    <h3>Edit</h3>
     <form method="post" th:action="@{'/birds/save/' + ${bird.birdId}}">
-        <label>Common Name
-            <input type="text" name="commonName" th:value="${bird.commonName}">
-        </label><br>
-        <label>Species Name
-            <input type="text" name="speciesName" th:value="${bird.speciesName}">
-        </label><br>
-        <label>Color
-            <input type="text" name="color" th:value="${bird.color}">
-        </label><br>
-        <label>Common Locations
-            <input type="text" name="commonLocations" th:value="${bird.commonLocations}">
-        </label><br>
-        <label>Description
-            <textarea name="description" rows="4" th:text="${bird.description}"></textarea>
-        </label><br>
-        <button type="submit">Save</button>
+
+        <!-- Personal Notes -->
+            <label><strong>Personal Notes:</strong>
+                <textarea name="notes" rows="5" cols="50" th:text="${bird.notes}"></textarea>
+            </label><br>
+
+
+        <!-- Date Seen
+        <label><strong>Date Seen:</strong>
+            <input type="date" name="dateSeen" />
+        </label><br>-->
+
+
+        <!-- Images
+        <label><strong>Photos:</strong>
+            <div>
+                <img th:each="img : ${bird.images}" th:src="@{${img.url}}" alt="Bird photo" width="200" />
+            </div>
+        </label><br> -->
+
+         <button type="submit">Save</button>
+
+
     </form>
 
     <form method="post" th:action="@{'/birds/delete/' + ${bird.birdId}}" style="margin-top:1rem">

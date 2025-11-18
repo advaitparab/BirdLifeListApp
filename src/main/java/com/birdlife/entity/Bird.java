@@ -14,7 +14,8 @@ public class Bird {
     @NotBlank private String speciesName;
     @NotBlank private String color;
     private String defaultLocation;
-    @Column(length = 2000) private String description;
+    @NotBlank private String description;
+    @Column(length = 2000) private String notes;
 
     @ElementCollection
     @CollectionTable(name = "bird_images", joinColumns = @JoinColumn(name = "bird_id"))
