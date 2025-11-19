@@ -8,7 +8,7 @@ import com.birdlife.entity.User;
 import com.birdlife.repo.BirdRepository;
 import com.birdlife.repo.MyListRepository;
 import com.birdlife.repo.UserRepository;
-import com.birdlife.service.MyListService;
+import com.birdlife.service.impl.MyListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +39,18 @@ public class MyListServiceImpl implements MyListService {
         );
     }
 
+
+/* //Attempt to implement user repository - non-functioning but leaving for potential help - delete when solved
+    private User resolveUser(Long userId) {
+        if (userId != null) {
+            return userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found:" + userId));
+        }
+        return userRepo.findByEmail("default@example.com").orElseThrow(() -> new RuntimeException("user not found"));
+    }
+*/
+
+
+
     @Override
     public List<MyListEntryDto> getMyList(Long userId) {
         return myRepo.findByUserId(userId).stream()
@@ -67,10 +79,7 @@ public class MyListServiceImpl implements MyListService {
         Bird b = birdRepo.findById(birdId).orElseThrow(() -> new RuntimeException("Bird not found"));
 
         Optional<MyListEntry> entryOpt = myRepo.findByUserAndBird(u, b);
-        if (entryOpt.isPresent()) {
-            MyListEntry entry = entryOpt.get();
-            myRepo.delete(entry);
-        }
+        entryOpt.ifPresent(myRepo::delete);
     }
 
     @Override
@@ -89,4 +98,3 @@ public class MyListServiceImpl implements MyListService {
         return map(saved);
     }
 }
-

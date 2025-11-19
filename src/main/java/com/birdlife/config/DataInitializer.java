@@ -1,7 +1,9 @@
 package com.birdlife.config;
 
 import com.birdlife.entity.Bird;
+import com.birdlife.entity.User;
 import com.birdlife.repo.BirdRepository;
+import com.birdlife.repo.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -11,14 +13,30 @@ import java.util.List;
 public class DataInitializer implements CommandLineRunner {
 
     private final BirdRepository birdRepository;
+    //private final UserRepository userRepository;
 
-    public DataInitializer(BirdRepository birdRepository) {
+
+    public DataInitializer(BirdRepository birdRepository) { //, UserRepository userRepository
         this.birdRepository = birdRepository;
+        //this.userRepository = userRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        if(birdRepository.count() == 2) { // Only load if DB is empty
+
+        /* Attempt to implement user repository - non-functioning but leaving for potential help - delete when solved
+        if (userRepository.findByEmail("default@email.com").isEmpty()) {
+            User defaultUser = User.builder()
+                    .email("default@email.com")
+                    .displayName("Default User")
+                    .build();
+            User saved = userRepository.save(defaultUser);
+            System.out.println("UserId=" + saved.getId());
+        }*/
+
+
+
+        if(birdRepository.count() == 1) { // Only load if DB is empty
 
             /*Bird cardinal = Bird.builder()
                     .commonName("Northern Cardinal")

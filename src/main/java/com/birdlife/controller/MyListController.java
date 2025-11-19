@@ -2,7 +2,7 @@ package com.birdlife.controller;
 
 import com.birdlife.dto.MyListEntryDto;
 import com.birdlife.dto.ObservationUpsertDto;
-import com.birdlife.service.MyListService;
+import com.birdlife.service.impl.MyListService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

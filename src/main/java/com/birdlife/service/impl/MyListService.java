@@ -1,4 +1,4 @@
-package com.birdlife.service;
+package com.birdlife.service.impl;
 
 import com.birdlife.dto.MyListEntryDto;
 import com.birdlife.dto.ObservationUpsertDto;

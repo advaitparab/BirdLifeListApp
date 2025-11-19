@@ -1,0 +1,191 @@
+        body {
+             font-family: "Segoe UI", "Arial Rounded MT Bold", sans-serif;
+             margin: 0;
+             background: #f5f5f5;
+         }
+
+/*nav bar*/
+         .navbar {
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             background: #3d5dbd;
+             color: white;
+             padding: 1rem 2rem;
+             position: sticky;
+         }
+
+         .logo {
+             font-size: 1.5rem;
+             font-weight: bold;
+         }
+
+
+
+/*page nav links */
+         .navlinks a {
+             margin-left: 1rem;
+             color: white;
+             text-decoration: none;
+         }
+
+         .navlinks a:hover {
+             color: darkblue;
+         }
+
+/*page title*/
+         h1 {
+             color: #4f4f4f;
+             margin: 1.5rem 1.5rem;
+             font-size: 2rem;
+         }
+
+/*search area*/
+         form {
+             display: flex;
+             gap: 1rem;
+             flex-wrap: wrap;
+             margin: 1.5rem 1.5rem;
+         }
+
+         input[type="text"], select {
+             color: #4f4f4f;
+             padding: .5rem .75rem;
+             border: 1px solid #ccc;
+             border-radius: 4px;
+             font-size: 1rem;
+         }
+
+         .bird-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            align-items: center;
+         }
+
+/*bird card*/
+         .bird-card {
+             background: white;
+             border-radius: 8px;
+             padding: 2rem;
+             box-shadow: 0 2px 3px lightgray;
+             width: 90%;
+             margin: 0 auto;
+         }
+
+
+
+
+/* Card titles - name and species name */
+        .card-titles {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+/*bird name font*/
+         .bird-card h2 {
+             font-size: 2rem;
+             color: #3d5dbd;
+             margin: 0;
+         }
+
+/* species name */
+        .bird-card h4 {
+            color: #4f4f4f;
+            font-style: italic;
+            margin: 0;
+            padding-top: 0.25rem;
+            padding-left: 0.5rem;
+        }
+
+
+/* details + buttons container */
+        .bird-card .card-body {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+
+/* Details - color, location, description */
+        .bird-card .details {
+            color: #4f4f4f;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 0;
+            gap: 0;
+            padding-top: 1rem;
+            padding-left: 1rem;
+        }
+
+        .bird-card .details p {
+            margin: 0.25rem;
+        }
+
+        .bird-card .details div {
+            margin-left: 0.25rem;
+            margin-top: 0.5rem;
+        }
+
+
+
+
+
+
+/* BUTTONS */
+        button, .bird-card .details-buttons a, .bird-card .buttons a, .bird-card .buttons button {
+            display: inline-block;
+            padding: 0.5rem 1.25rem;
+            line-height: 1.2;
+            background-color: #3d5dbd;
+            color: white;
+            border-radius: 6px;
+            border: none;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        .bird-card .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        /* details buttons */
+        .bird-card .details-buttons, .bird-card .details-buttons a {
+            display: flex;
+            align-items: center; /* allows back button not look funny */
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 0.75rem;
+        }
+
+        .bird-card .buttons form {
+            margin: 0;
+        }
+
+
+
+/* Hover effect */
+        button:hover,
+        .bird-card .buttons a:hover,
+        .bird-card .buttons button:hover {
+            background-color: #024ea2;
+        }
+
+
+
+        .alert{
+             margin: 1.5rem 1.5rem;
+             padding: .5rem .75rem;
+             border-radius: 4px;
+             background: darkgrey;
+         }
+

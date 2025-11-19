@@ -18,5 +18,6 @@ public class BirdDto {
     private String color;
     private String defaultLocation;
     private String description;
+    private String notes;
     private List<String> images;
 }

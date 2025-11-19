@@ -2,6 +2,7 @@ package com.birdlife.controller;
 
 import com.birdlife.dto.BirdDto;
 import com.birdlife.service.BirdService;
+import com.birdlife.service.impl.MyListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,11 @@ import java.util.List;
 public class ViewController {
 
     private final BirdService birdService;
+    //private final MyListService myListService; //Attempt to implement user repository - non-functioning but leaving for potential help - delete when solved
 
-    public ViewController(BirdService birdService) {
+    public ViewController(BirdService birdService) { //public ViewController(BirdService birdService, MyListService myListService) {
         this.birdService = birdService;
+        //this.myListService = myListService; //Attempt to implement user repository - non-functioning but leaving for potential help - delete when solved
     }
 
     /** quick sanity check: http://localhost:8080/ping -> OK */
@@ -58,6 +61,27 @@ public class ViewController {
         return "myWaypoints";
     }
 
+/* //Attempt to implement user repository - non-functioning but leaving for potential help - delete when solved
+    @GetMapping("/myWaypoints")
+    public String myWaypoints(Model model) {
+        model.addAttribute("waypoints", myListService.getMyList(null));
+        return "myWaypoints";
+    }
+
+    @PostMapping("/mylist/add/{birdId}")
+    public String addToMyList(@PathVariable("birdId") Long birdId) {
+        myListService.addToMyList(null, birdId);
+        return "redirect:/home";
+    }
+
+    @PostMapping("/mylist/remove/{birdId}")
+    public String removeFromMyList(@PathVariable("birdId") Long birdId) {
+        myListService.removeFromMyList(null, birdId);
+        return "redirect:/myWaypoints";
+    }
+*/
+
+
     @GetMapping("/birds/details/{id}")
     public String birdDetails(@PathVariable("id") Long id, Model model) {
         model.addAttribute("bird", birdService.getById(id));
@@ -71,7 +95,8 @@ public class ViewController {
                            @RequestParam("speciesName") String speciesName,
                            @RequestParam(name = "color", required = false) String color,
                            @RequestParam(name = "defaultLocation", required = false) String defaultLocation,
-                           @RequestParam(name = "description", required = false) String description) {
+                           @RequestParam(name = "description", required = false) String description,
+                           @RequestParam(name = "notes", required = false) String notes) {
 
         BirdDto dto = new BirdDto();
         dto.setBirdId(id);
@@ -80,6 +105,7 @@ public class ViewController {
         dto.setColor(color);
         dto.setDefaultLocation(defaultLocation);
         dto.setDescription(description);
+        dto.setNotes(notes);
 
         birdService.update(id, dto);
         return "redirect:/birds/details/" + id;

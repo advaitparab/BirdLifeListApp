@@ -1,8 +1,9 @@
-package com.birdlife.service;
+package com.birdlife.service.impl;
 
 import com.birdlife.dto.BirdDto;
 import com.birdlife.entity.Bird;
 import com.birdlife.repo.BirdRepository;
+import com.birdlife.service.BirdService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +62,7 @@ public class BirdServiceImpl implements BirdService {
         bird.setColor(dto.getColor());
         bird.setDefaultLocation(dto.getDefaultLocation());
         bird.setDescription(dto.getDescription());
+        bird.setNotes(dto.getNotes());
 
         return toDto(birdRepository.save(bird));
     }
@@ -87,6 +89,8 @@ public class BirdServiceImpl implements BirdService {
                 .color(bird.getColor())
                 .defaultLocation(bird.getDefaultLocation())
                 .description(bird.getDescription())
+                .notes(bird.getNotes())             // ✅ added
+                .images(bird.getImages())
                 .build();
     }
 
@@ -98,6 +102,8 @@ public class BirdServiceImpl implements BirdService {
                 .color(dto.getColor())
                 .defaultLocation(dto.getDefaultLocation())
                 .description(dto.getDescription())
+                .notes(dto.getNotes())             // ✅ added
+                .images(dto.getImages())
                 .build();
     }
 }

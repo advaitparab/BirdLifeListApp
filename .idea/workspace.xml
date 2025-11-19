@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="didn't go through in last push">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" afterDir="false" />
+    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/BirdDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/BirdDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/repo/BirdRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/repo/BirdRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/BirdService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/BirdService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/BirdServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/birdlife.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/birdlife.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +44,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/advaitparab/BirdLifeListApp.git",
-    "accountId": "554c2c7a-5f09-4897-a174-8ef8848b0aaf"
+    "accountId": "6a3a6a44-02e9-492c-8c3b-ac42397789ea"
   }
 }]]></component>
   <component name="ProblemsViewState">
@@ -59,34 +58,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BirdlifeApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "dev",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/harsh/OneDrive/Documents/GitHub/BirdLifeListApp",
-    "onboarding.tips.debug.path": "C:/Users/harsh/IdeaProjects/MyWingedWaypoints/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BirdlifeApplication.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/harsh/OneDrive/Documents/GitHub/BirdLifeListApp&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/harsh/IdeaProjects/MyWingedWaypoints/src/main/java/org/example/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\princ\Desktop\EntAppDev\BirdLifeListApp\src\main\resources\static" />
       <recent name="C:\Users\tadpo\IdeaProjects\BirdLifeListApp" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="BirdlifeApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.birdlife.BirdlifeApplication" />
+      <module name="my-winged-waypoints" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.birdlife.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BirdlifeApplication" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
       </set>
     </attachedChunks>
   </component>
@@ -107,7 +127,63 @@
       <option name="project" value="LOCAL" />
       <updated>1760117158358</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Database now exists, is persistent, and has some basic data">
+      <option name="closed" value="true" />
+      <created>1762731824682</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762731824682</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added Notes to the Details page, about to start adding myList function">
+      <option name="closed" value="true" />
+      <created>1763426312570</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763426312570</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added Notes to the Details page, about to start adding myList function">
+      <option name="closed" value="true" />
+      <created>1763426324764</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763426324764</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Could not figure out my list functions, will start style here soon">
+      <option name="closed" value="true" />
+      <created>1763442073424</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1763442073424</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Details page is coming alone still needs final touches and layout fixes">
+      <option name="closed" value="true" />
+      <created>1763452435148</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1763452435148</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Details page style is done">
+      <option name="closed" value="true" />
+      <created>1763495024264</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763495024264</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon">
+      <option name="closed" value="true" />
+      <created>1763506440499</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1763506440499</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +199,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="backend code" />
-    <option name="LAST_COMMIT_MESSAGE" value="backend code" />
+    <MESSAGE value="Database now exists, is persistent, and has some basic data" />
+    <MESSAGE value="Added Notes to the Details page, about to start adding myList function" />
+    <MESSAGE value="Could not figure out my list functions, will start style here soon" />
+    <MESSAGE value="Details page is coming alone still needs final touches and layout fixes" />
+    <MESSAGE value="Details page style is done" />
+    <MESSAGE value="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon" />
   </component>
 </project>
