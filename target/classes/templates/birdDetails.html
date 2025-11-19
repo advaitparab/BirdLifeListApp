@@ -17,8 +17,6 @@
     </div>
 </nav>
 
-<!--<section class="bird-card" th:if="${bird != null}">-->
-
 <div class="bird-card" th:if="${bird != null}">
 
 
@@ -28,8 +26,6 @@
     </div>
 
     <div class="details">
-        <!--<p><strong>Species:</strong> <span th:text="${bird.speciesName}">Genus species</span></p>-->
-        <!--<p><strong>ID:</strong> <span th:text="${bird.birdId}">1</span></p>-->
         <p><strong>Color:</strong> <span th:text="${bird.color}">Blue</span></p>
         <p><strong>Common Locations:</strong> <span th:text="${bird.defaultLocation}">Ohio</span></p>
         <p><strong>Description:</strong> <span th:text="${bird.description}">this is a test description</span></p>
@@ -67,9 +63,9 @@
 
 </div>
 
-<section class="alert" th:if="${bird == null}">
-    <p>Bird not found.</p>
-</section>
-
+    <section class="alert" th:if="${bird == null}">
+        <p>Bird not found.</p>
+    </section>
+</div>
 </body>
 </html>

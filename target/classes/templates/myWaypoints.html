@@ -35,7 +35,7 @@
         <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
 
         <!-- Color Filter --> <!--need to add a list of selectable colors-->
-        <select name="color" onchange="this.form.submit()">
+        <select name="color"> <!--onchange="this.form.submit()"-->
             <option value="">Color</option>
             <option th:each="color : ${colors}"
                     th:value="${color}"
@@ -45,7 +45,7 @@
         </select>
 
         <!-- Location Filter--> <!--need to add a list of selectable locations-->
-        <select name="location" onchange="this.form.submit()">
+        <select name="location"><!--onchange="this.form.submit()"-->
             <option value="">Location</option>
             <option th:each="loc : ${locations}"
                     th:value="${loc}"
