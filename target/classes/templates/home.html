@@ -26,8 +26,6 @@
 </div>
 
 <form method="get" th:action="@{/home}">
-
-        <!-- Search -->
     <!-- Search -->
     <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
 
@@ -53,6 +51,8 @@
     <button type="submit">Search</button>
 </form>
 
+<button type="button" id="openAddBirdModal" class="btn-add">Add New Bird</button>
+
     <div class="bird-list" th:if="${birds != null}">
 
         <div class="bird-card" th:each="bird : ${birds}">
@@ -73,51 +73,95 @@
                 <div class="buttons">
                     <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
                     <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
-                        <button type="submit">Add</button>
+                        <button type="submit">Add to Winged Waypoints</button>
                     </form>
                 </div>
-
             </div>
-
-
         </div>
-
     </div>
 
-
-
-    <!--
-    <table th:if="${birds != null}">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Common Name</th>
-            <th>Species</th>
-            <th>Color</th>
-            <th>Default Location</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="bird : ${birds}">
-            <td th:text="${bird.birdId}">1</td>
-            <td th:text="${bird.commonName}">Blue Jay</td>
-            <td th:text="${bird.speciesName}">Cyanocitta cristata</td>
-            <td th:text="${bird.color}">Blue</td>
-            <td th:text="${bird.defaultLocation}">Ohio</td>
-            <td>
-                <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
-
-
-                <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
-                    <button type="submit">Add</button>
-                </form>
-
-            </td>
-        </tr>
-        </tbody>
-    </table>-->
-
 <p class="alert" th:if="${birds != null and #lists.isEmpty(birds)}">No birds found.</p>
+
+<!-- Bird Modal -->
+<div id="addBirdModal" class="modal">
+    <div class="modal-content">
+        <h2>Add a New Bird</h2>
+
+        <form id="addBirdForm">
+            <label>Common Name:</label>
+            <input type="text" id="commonName" name="commonName" required>
+
+            <label>Species Name:</label>
+            <input type="text" id="speciesName" name="speciesName" required>
+
+            <label>Color:</label>
+            <input type="text" id="color" name="color" required>
+
+            <label>Default Location:</label>
+            <input type="text" id="defaultLocation" name="defaultLocation" required>
+
+            <label>Description:</label>
+            <textarea name="description" required></textarea>
+
+            <button type="submit">Save Bird</button>
+            <button type="button" id="closeAddBirdModal">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    console.log("SCRIPT LOADED");
+
+    const modal = document.getElementById("addBirdModal");
+    const openBtn = document.getElementById("openAddBirdModal");
+    const closeBtn = document.getElementById("closeAddBirdModal");
+    const form = document.getElementById("addBirdForm");
+
+    const apiUrl = /*[[@{/api/birds}]]*/ '/api/birds';
+
+    openBtn.onclick = () => modal.style.display = "flex";
+    closeBtn.onclick = () => modal.style.display = "none";
+
+    document.addEventListener("click", function(e) {
+        console.log("GLOBAL CLICK:", e.target);
+    });
+
+    form.onsubmit = async function(e) {
+    e.preventDefault();
+
+    const payload = {
+        commonName: form.querySelector('input[name="commonName"]').value,
+        speciesName: form.querySelector('input[name="speciesName"]').value,
+        color: form.querySelector('input[name="color"]').value,
+        defaultLocation: form.querySelector('input[name="defaultLocation"]').value,
+        description: form.querySelector('textarea[name="description"]').value
+    };
+
+    // CSRF token is optional; remove if not needed
+    const csrfInput = form.querySelector('input[name="_csrf"]');
+    const headers = { "Content-Type": "application/json" };
+    if (csrfInput) headers["X-CSRF-TOKEN"] = csrfInput.value;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: "POST",
+            headers: headers,
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            alert("Bird added!");
+            modal.style.display = "none";
+            window.location.reload();
+        } else {
+            const text = await response.text();
+            alert("Failed to add bird: " + text);
+        }
+    } catch (err) {
+        alert("Network error: " + err);
+    }
+};
+
+</script>
 </body>
 </html>

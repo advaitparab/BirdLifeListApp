@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon">
+    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Removed User">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/birdlife.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/birdlife.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/MyListEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/MyListEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/repo/MyListRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/repo/MyListRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763506440499</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Removed User">
+      <option name="closed" value="true" />
+      <created>1764553803434</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1764553803435</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,6 +210,7 @@
     <MESSAGE value="Details page is coming alone still needs final touches and layout fixes" />
     <MESSAGE value="Details page style is done" />
     <MESSAGE value="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon" />
+    <MESSAGE value="Removed User" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed User" />
   </component>
 </project>
