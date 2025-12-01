@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="buttons">
-                    <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
+                    <a th:href="@{'/birds/details/' + ${bird.birdId}}">Edit</a>
                     <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
                         <button type="submit">Add to Winged Waypoints</button>
                     </form>
