@@ -1,9 +1,8 @@
 package com.birdlife.config;
 
 import com.birdlife.entity.Bird;
-import com.birdlife.entity.User;
+
 import com.birdlife.repo.BirdRepository;
-import com.birdlife.repo.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

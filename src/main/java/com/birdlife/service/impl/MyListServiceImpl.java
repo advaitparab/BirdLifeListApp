@@ -4,11 +4,8 @@ import com.birdlife.dto.MyListEntryDto;
 import com.birdlife.dto.ObservationUpsertDto;
 import com.birdlife.entity.Bird;
 import com.birdlife.entity.MyListEntry;
-import com.birdlife.entity.User;
 import com.birdlife.repo.BirdRepository;
 import com.birdlife.repo.MyListRepository;
-import com.birdlife.repo.UserRepository;
-import com.birdlife.service.impl.MyListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +18,6 @@ import java.util.stream.Collectors;
 public class MyListServiceImpl implements MyListService {
 
     private final MyListRepository myRepo;
-    private final UserRepository userRepo;
     private final BirdRepository birdRepo;
 
     private static MyListEntryDto map(MyListEntry e) {
@@ -39,56 +35,49 @@ public class MyListServiceImpl implements MyListService {
         );
     }
 
-
-/* //Attempt to implement user repository - non-functioning but leaving for potential help - delete when solved
-    private User resolveUser(Long userId) {
-        if (userId != null) {
-            return userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found:" + userId));
-        }
-        return userRepo.findByEmail("default@example.com").orElseThrow(() -> new RuntimeException("user not found"));
-    }
-*/
-
-
-
     @Override
-    public List<MyListEntryDto> getMyList(Long userId) {
-        return myRepo.findByUserId(userId).stream()
+    public List<MyListEntryDto> getMyList() {
+        return myRepo.findAll().stream()
                 .map(MyListServiceImpl::map)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public MyListEntryDto addToMyList(Long userId, Long birdId) {
-        User u = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        Bird b = birdRepo.findById(birdId).orElseThrow(() -> new RuntimeException("Bird not found"));
+    public MyListEntryDto addToMyList(Long birdId) {
+        Bird b = birdRepo.findById(birdId)
+                .orElseThrow(() -> new RuntimeException("Bird not found"));
 
-        Optional<MyListEntry> existing = myRepo.findByUserAndBird(u, b);
+        Optional<MyListEntry> existing = myRepo.findByBird(b);
+
         if (existing.isPresent()) {
             return map(existing.get());
         }
 
-        MyListEntry e = MyListEntry.builder().user(u).bird(b).build();
+        MyListEntry e = MyListEntry.builder()
+                .bird(b)
+                .build();
+
         MyListEntry saved = myRepo.save(e);
         return map(saved);
     }
 
     @Override
-    public void removeFromMyList(Long userId, Long birdId) {
-        User u = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        Bird b = birdRepo.findById(birdId).orElseThrow(() -> new RuntimeException("Bird not found"));
+    public void removeFromMyList(Long birdId) {
+        Bird b = birdRepo.findById(birdId)
+                .orElseThrow(() -> new RuntimeException("Bird not found"));
 
-        Optional<MyListEntry> entryOpt = myRepo.findByUserAndBird(u, b);
+        Optional<MyListEntry> entryOpt = myRepo.findByBird(b);
         entryOpt.ifPresent(myRepo::delete);
     }
 
     @Override
-    public MyListEntryDto upsertObservation(Long userId, ObservationUpsertDto p) {
-        User u = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        Bird b = birdRepo.findById(p.getBirdId()).orElseThrow(() -> new RuntimeException("Bird not found"));
+    public MyListEntryDto upsertObservation(ObservationUpsertDto p) {
 
-        MyListEntry e = myRepo.findByUserAndBird(u, b)
-                .orElseGet(() -> MyListEntry.builder().user(u).bird(b).build());
+        Bird b = birdRepo.findById(p.getBirdId())
+                .orElseThrow(() -> new RuntimeException("Bird not found"));
+
+        MyListEntry e = myRepo.findByBird(b)
+                .orElseGet(() -> MyListEntry.builder().bird(b).build());
 
         e.setDateSeen(p.getDateSeen());
         e.setLocationSeen(p.getLocationSeen());

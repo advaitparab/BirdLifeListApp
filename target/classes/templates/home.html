@@ -28,30 +28,29 @@
 <form method="get" th:action="@{/home}">
 
         <!-- Search -->
-        <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
+    <!-- Search -->
+    <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
 
-        <!-- Color Filter --> <!--need to add a list of selectable colors-->
-        <select name="color" onchange="this.form.submit()">
-            <option value="" disabled selected>Color</option>
-            <option th:each="color : ${colors}"
-                    th:value="${color}"
-                    th:text="${color}"
-                    th:selected="${color == selectedColor}">
-            </option>
-        </select>
+    <!-- Color Filter -->
+    <select name="color">
+        <option value="">Color</option>
+        <option th:each="color : ${colors}"
+                th:value="${color}"
+                th:text="${color}"
+                th:selected="${color == selectedColor}">
+        </option>
+    </select>
 
-        <!-- Location Filter--> <!--need to add a list of selectable locations-->
-        <select name="location" onchange="this.form.submit()">
-            <option value="" disabled selected>Location</option>
-            <option th:each="loc : ${locations}"
-                    th:value="${loc}"
-                    th:text="${loc}"
-                    th:selected="${loc == selectedLocation}">
-            </option>
-        </select>
-
-        <button type="submit">Search</button>
-
+    <!-- Location Filter -->
+    <select name="location"> <!-- This is the non-blank "no filter" option -->
+        <option value="">Location</option>
+        <option th:each="loc : ${locations}"
+                th:value="${loc}"
+                th:text="${loc}"
+                th:selected="${loc == selectedLocation}">
+        </option>
+    </select>
+    <button type="submit">Search</button>
 </form>
 
     <div class="bird-list" th:if="${birds != null}">
