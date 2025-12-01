@@ -77,7 +77,10 @@ public class BirdServiceImpl implements BirdService {
     }
 
     public List<String> getAllLocations() {
-        return birdRepository.findDistinctDefaultLocations();
+        return birdRepository.findDistinctDefaultLocations().stream()
+                .filter(loc -> loc != null && !loc.isBlank())
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     // DTO <-> Entity mapping

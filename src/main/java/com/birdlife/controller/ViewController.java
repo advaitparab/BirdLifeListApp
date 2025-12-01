@@ -34,7 +34,16 @@ public class ViewController {
                        Model model) {
         List<BirdDto> birds = Collections.emptyList();
         String loadError = null;
-
+// Normalize empty strings from the form to null so they mean "no filter"
+        if (q != null && q.isBlank()) {
+            q = null;
+        }
+        if (color != null && color.isBlank()) {
+            color = null;
+        }
+        if (location != null && location.isBlank()) {
+            location = null;
+        }
         try {
             // searchAdvanced accepts nulls; returns filtered list
             birds = birdService.searchAdvanced(q, color, location);
@@ -57,7 +66,25 @@ public class ViewController {
     }
 
     @GetMapping("/myWaypoints")
-    public String myWaypoints() {
+    public String myWaypoints(@RequestParam(name = "q", required = false) String q,
+                              @RequestParam(name = "color", required = false) String color,
+                              @RequestParam(name = "location", required = false) String location,
+                              Model model) {// Normalize empty to null (same idea as home)
+        if (q != null && q.isBlank()) q = null;
+        if (color != null && color.isBlank()) color = null;
+        if (location != null && location.isBlank()) location = null;
+
+        model.addAttribute("q", q);
+        model.addAttribute("color", color);
+        model.addAttribute("location", location);
+
+        List<String> colors = birdService.getAllColors();
+        List<String> locations = birdService.getAllLocations();
+        model.addAttribute("colors", colors);
+        model.addAttribute("locations", locations);
+        model.addAttribute("selectedColor", color);
+        model.addAttribute("selectedLocation", location);
+
         return "myWaypoints";
     }
 
