@@ -38,9 +38,10 @@ public class BirdController {
     }
 
     @PutMapping("/{id}")
-    public BirdDto update(@PathVariable Long id, @Valid @RequestBody BirdDto dto) {
+    public BirdDto update(@PathVariable("id") Long id, @Valid @RequestBody BirdDto dto) {
         return service.update(id, dto);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {

@@ -82,7 +82,8 @@
 
             if (response.ok) {
                 alert("Bird updated!");
-                window.location.reload();
+                // ⬇️ Go back to the main list so you see the updated info
+                window.location.href = '/home';
             } else {
                 const text = await response.text();
                 alert("Failed to update bird: " + text);
@@ -113,6 +114,7 @@
     };
     /*]]>*/
 </script>
+
 
 </body>
 </html>
