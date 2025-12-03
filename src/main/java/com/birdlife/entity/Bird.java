@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import java.util.List;
 
-@Entity @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+@Entity @Table(name = "bird") @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Bird {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long birdId;

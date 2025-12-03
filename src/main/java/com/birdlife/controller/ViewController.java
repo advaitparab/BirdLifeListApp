@@ -2,7 +2,6 @@ package com.birdlife.controller;
 
 import com.birdlife.dto.BirdDto;
 import com.birdlife.service.BirdService;
-import com.birdlife.service.impl.MyListService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

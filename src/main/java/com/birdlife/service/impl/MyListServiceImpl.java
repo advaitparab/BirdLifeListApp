@@ -6,6 +6,7 @@ import com.birdlife.entity.Bird;
 import com.birdlife.entity.MyListEntry;
 import com.birdlife.repo.BirdRepository;
 import com.birdlife.repo.MyListRepository;
+import com.birdlife.service.MyListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,44 +22,40 @@ public class MyListServiceImpl implements MyListService {
     private final BirdRepository birdRepo;
 
     private static MyListEntryDto map(MyListEntry e) {
-        return new MyListEntryDto(
-                e.getId(),
-                e.getBird().getBirdId(),
-                e.getBird().getCommonName(),
-                e.getBird().getSpeciesName(),
-                e.getBird().getColor(),
-                e.getBird().getDefaultLocation(),
-                e.getBird().getDescription(),
-                e.getDateSeen(),
-                e.getLocationSeen(),
-                e.getNotes()
-        );
+        return MyListEntryDto.builder()
+                .entryId(e.getEntryId())
+                .birdId(e.getBird().getBirdId())
+                .dateSeen(e.getDateSeen())
+                .locationSeen(e.getLocationSeen())
+                .notes(e.getNotes())
+                .build();
     }
 
     @Override
     public List<MyListEntryDto> getMyList() {
-        return myRepo.findAll().stream()
+        return myRepo.findAll()
+                .stream()
                 .map(MyListServiceImpl::map)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
     public MyListEntryDto addToMyList(Long birdId) {
+
         Bird b = birdRepo.findById(birdId)
                 .orElseThrow(() -> new RuntimeException("Bird not found"));
 
-        Optional<MyListEntry> existing = myRepo.findByBird(b);
 
+        Optional<MyListEntry> existing = myRepo.findByBird(b);
         if (existing.isPresent()) {
             return map(existing.get());
         }
 
-        MyListEntry e = MyListEntry.builder()
+        MyListEntry entry = MyListEntry.builder()
                 .bird(b)
                 .build();
 
-        MyListEntry saved = myRepo.save(e);
-        return map(saved);
+        return map(myRepo.save(entry));
     }
 
     @Override
@@ -66,8 +63,7 @@ public class MyListServiceImpl implements MyListService {
         Bird b = birdRepo.findById(birdId)
                 .orElseThrow(() -> new RuntimeException("Bird not found"));
 
-        Optional<MyListEntry> entryOpt = myRepo.findByBird(b);
-        entryOpt.ifPresent(myRepo::delete);
+        myRepo.findByBird(b).ifPresent(myRepo::delete);
     }
 
     @Override
@@ -76,14 +72,16 @@ public class MyListServiceImpl implements MyListService {
         Bird b = birdRepo.findById(p.getBirdId())
                 .orElseThrow(() -> new RuntimeException("Bird not found"));
 
-        MyListEntry e = myRepo.findByBird(b)
+        // Your rule: find entry for bird or create one
+        MyListEntry entry = myRepo.findByBird(b)
                 .orElseGet(() -> MyListEntry.builder().bird(b).build());
 
-        e.setDateSeen(p.getDateSeen());
-        e.setLocationSeen(p.getLocationSeen());
-        e.setNotes(p.getNotes());
+        entry.setDateSeen(p.getDateSeen());
+        entry.setLocationSeen(p.getLocationSeen());
+        entry.setNotes(p.getNotes());
 
-        MyListEntry saved = myRepo.save(e);
-        return map(saved);
+        return map(myRepo.save(entry));
     }
+
+
 }

@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
-
 </head>
+
 <body>
 <nav class="navbar">
     <div class="logo">Winged Waypoints</div>
@@ -17,19 +15,13 @@
     </div>
 </nav>
 
-<!-- Header -->
 <h1>Home</h1>
 
-<!--error-->
-<div class="alert" th:if="${loadError}">
-    Could not load birds.
-</div>
+<div class="alert" th:if="${loadError}">Could not load birds.</div>
 
 <form method="get" th:action="@{/home}">
-    <!-- Search -->
     <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
 
-    <!-- Color Filter -->
     <select name="color">
         <option value="">Color</option>
         <option th:each="color : ${colors}"
@@ -39,8 +31,7 @@
         </option>
     </select>
 
-    <!-- Location Filter -->
-    <select name="location"> <!-- This is the non-blank "no filter" option -->
+    <select name="location">
         <option value="">Location</option>
         <option th:each="loc : ${locations}"
                 th:value="${loc}"
@@ -48,57 +39,86 @@
                 th:selected="${loc == selectedLocation}">
         </option>
     </select>
+
     <button type="submit">Search</button>
 </form>
 
 <button type="button" id="openAddBirdModal" class="btn-add">Add New Bird</button>
 
-    <div class="bird-list" th:if="${birds != null}">
+<div class="bird-list" th:if="${birds != null}">
+    <div class="bird-card" th:each="bird : ${birds}">
+        <div class="card-titles">
+            <h2 th:text="${bird.commonName}"></h2>
+            <h4 th:text="${bird.speciesName}"></h4>
+        </div>
 
-        <div class="bird-card" th:each="bird : ${birds}">
-
-            <div class="card-titles">
-                <h2 th:text="${bird.commonName}">Blue Jay</h2>
-                <h4><span th:text="${bird.speciesName}">Cyanocitta cristata</span></h4>
+        <div class="card-body">
+            <div class="details">
+                <p><strong>Color:</strong> <span th:text="${bird.color}"></span></p>
+                <p><strong>Common Locations:</strong> <span th:text="${bird.defaultLocation}"></span></p>
+                <p><strong>Description:</strong> <span th:text="${bird.description}"></span></p>
             </div>
 
-            <div class="card-body">
+            <div class="buttons">
+                <a th:href="@{'/birds/details/' + ${bird.birdId}}">Edit</a>
 
-                <div class="details">
-                    <p><strong>Color:</strong> <span th:text="${bird.color}">Blue</span></p>
-                    <p><strong>Common Locations:</strong> <span th:text="${bird.defaultLocation}">Ohio</span></p>
-                    <p><strong>Description:</strong> <span th:text="${bird.description}">this is a test description</span></p>
-                </div>
-
-                <div class="buttons">
-                    <a th:href="@{'/birds/details/' + ${bird.birdId}}">Edit</a>
-                    <form th:action="@{'/mylist/add/' + ${bird.birdId}}" method="post">
-                        <button type="submit">Add to Winged Waypoints</button>
-                    </form>
-                </div>
+                <button type="button"
+                        class="btn-add-observation"
+                        th:data-bird-id="${bird.birdId}">
+                    Add to Winged Waypoints
+                </button>
             </div>
         </div>
     </div>
+</div>
 
 <p class="alert" th:if="${birds != null and #lists.isEmpty(birds)}">No birds found.</p>
 
-<!-- Bird Modal -->
+
+<!-- OBSERVATION MODAL -->
+<div id="observationModal" class="modal">
+    <div class="modal-content">
+
+        <h2>Add Observation</h2>
+
+        <form id="observationForm">
+
+            <!-- FIXED (kept simple, does not rely on name mapping) -->
+            <input type="hidden" id="obsBirdId">
+
+            <label>Date Seen:</label>
+            <input type="date" id="dateSeen" required>
+
+            <label>Location Seen:</label>
+            <input type="text" id="locationSeen" required>
+
+            <label>Notes:</label>
+            <textarea id="notes"></textarea>
+
+            <button type="submit">Save</button>
+            <button type="button" id="closeObservationModal">Cancel</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- ADD BIRD MODAL -->
 <div id="addBirdModal" class="modal">
     <div class="modal-content">
         <h2>Add a New Bird</h2>
 
         <form id="addBirdForm">
             <label>Common Name:</label>
-            <input type="text" id="commonName" name="commonName" required>
+            <input type="text" name="commonName" required>
 
             <label>Species Name:</label>
-            <input type="text" id="speciesName" name="speciesName" required>
+            <input type="text" name="speciesName" required>
 
             <label>Color:</label>
-            <input type="text" id="color" name="color" required>
+            <input type="text" name="color" required>
 
             <label>Default Location:</label>
-            <input type="text" id="defaultLocation" name="defaultLocation" required>
+            <input type="text" name="defaultLocation" required>
 
             <label>Description:</label>
             <textarea name="description" required></textarea>
@@ -110,58 +130,94 @@
 </div>
 
 <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
     console.log("SCRIPT LOADED");
 
-    const modal = document.getElementById("addBirdModal");
-    const openBtn = document.getElementById("openAddBirdModal");
-    const closeBtn = document.getElementById("closeAddBirdModal");
-    const form = document.getElementById("addBirdForm");
+    // -----------------------------
+    // ADD BIRD MODAL
+    // -----------------------------
+    const addModal = document.getElementById("addBirdModal");
+    document.getElementById("openAddBirdModal").onclick = () => addModal.style.display = "flex";
+    document.getElementById("closeAddBirdModal").onclick = () => addModal.style.display = "none";
 
-    const apiUrl = /*[[@{/api/birds}]]*/ '/api/birds';
+    const addBirdForm = document.getElementById("addBirdForm");
 
-    openBtn.onclick = () => modal.style.display = "flex";
-    closeBtn.onclick = () => modal.style.display = "none";
+    addBirdForm.onsubmit = async function (e) {
+        e.preventDefault();
 
-    document.addEventListener("click", function(e) {
-        console.log("GLOBAL CLICK:", e.target);
-    });
+        const payload = {
+            commonName: addBirdForm.commonName.value,
+            speciesName: addBirdForm.speciesName.value,
+            color: addBirdForm.color.value,
+            defaultLocation: addBirdForm.defaultLocation.value,
+            description: addBirdForm.description.value
+        };
 
-    form.onsubmit = async function(e) {
-    e.preventDefault();
-
-    const payload = {
-        commonName: form.querySelector('input[name="commonName"]').value,
-        speciesName: form.querySelector('input[name="speciesName"]').value,
-        color: form.querySelector('input[name="color"]').value,
-        defaultLocation: form.querySelector('input[name="defaultLocation"]').value,
-        description: form.querySelector('textarea[name="description"]').value
-    };
-
-    // CSRF token is optional; remove if not needed
-    const csrfInput = form.querySelector('input[name="_csrf"]');
-    const headers = { "Content-Type": "application/json" };
-    if (csrfInput) headers["X-CSRF-TOKEN"] = csrfInput.value;
-
-    try {
-        const response = await fetch(apiUrl, {
+        const response = await fetch('/api/birds', {
             method: "POST",
-            headers: headers,
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(payload)
         });
 
         if (response.ok) {
             alert("Bird added!");
-            modal.style.display = "none";
+            addModal.style.display = "none";
             window.location.reload();
         } else {
-            const text = await response.text();
-            alert("Failed to add bird: " + text);
+            alert("Failed to add bird");
         }
-    } catch (err) {
-        alert("Network error: " + err);
-    }
-};
+    };
 
+
+    // -----------------------------
+    // OBSERVATION MODAL
+    // -----------------------------
+    const obsModal = document.getElementById("observationModal");
+    const obsForm  = document.getElementById("observationForm");
+
+    // OPEN MODAL
+    document.querySelectorAll(".btn-add-observation").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const birdId = btn.dataset.birdId;
+            console.log("Opening observation modal for bird:", birdId);
+            document.getElementById("obsBirdId").value = birdId;
+            obsModal.style.display = "flex";
+        });
+    });
+
+    document.getElementById("closeObservationModal").onclick = () => obsModal.style.display = "none";
+
+    // SAVE OBSERVATION
+        obsForm.onsubmit = async function(e){
+        e.preventDefault();
+
+        const payload = {
+            birdId: Number(document.getElementById("obsBirdId").value),
+            dateSeen: document.getElementById("dateSeen").value,
+            locationSeen: document.getElementById("locationSeen").value,
+            notes: document.getElementById("notes").value
+        };
+
+        console.log("Submitting observation:", payload);
+
+        const res = await fetch("/api/mylist/observation", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+            alert("Observation added!");
+            obsModal.style.display = "none";
+            obsForm.reset();
+            document.getElementById("obsBirdId").value = "";
+        } else {
+            alert("Failed to save observation.");
+        }
+    };
+
+});
 </script>
 </body>
 </html>

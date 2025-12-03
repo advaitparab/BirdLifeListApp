@@ -2,7 +2,7 @@ package com.birdlife.controller;
 
 import com.birdlife.dto.MyListEntryDto;
 import com.birdlife.dto.ObservationUpsertDto;
-import com.birdlife.service.impl.MyListService;
+import com.birdlife.service.MyListService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,9 +39,9 @@ public class MyListController {
 
     // PATCH /api/mylist/observation
     @PatchMapping("/observation")
-    public MyListEntryDto upsertObservation(
-            @Valid @RequestBody ObservationUpsertDto payload
-    ) {
+    public MyListEntryDto upsertObservation(@Valid @RequestBody ObservationUpsertDto payload) {
+        System.out.println("Received payload: " + payload);
         return service.upsertObservation(payload);
     }
+
 }
