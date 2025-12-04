@@ -41,9 +41,8 @@
     </select>
 
     <button type="submit">Search</button>
+    <button type="button" id="openAddBirdModal" class="btn-add">Add New Bird</button>
 </form>
-
-<button type="button" id="openAddBirdModal" class="btn-add">Add New Bird</button>
 
 <div class="bird-list" th:if="${birds != null}">
     <div class="bird-card" th:each="bird : ${birds}">
@@ -65,7 +64,7 @@
                 <button type="button"
                         class="btn-add-observation"
                         th:data-bird-id="${bird.birdId}">
-                    Add to Winged Waypoints
+                    Save Sighting
                 </button>
             </div>
         </div>
@@ -94,7 +93,7 @@
             <label>Notes:</label>
             <textarea id="notes"></textarea>
 
-            <button type="submit">Save</button>
+            <button type="submit">Save to My Winged Waypoints</button>
             <button type="button" id="closeObservationModal">Cancel</button>
         </form>
     </div>
