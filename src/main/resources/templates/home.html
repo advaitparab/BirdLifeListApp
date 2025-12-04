@@ -83,7 +83,6 @@
 
         <form id="observationForm">
 
-            <!-- FIXED (kept simple, does not rely on name mapping) -->
             <input type="hidden" id="obsBirdId">
 
             <label>Date Seen:</label>
@@ -100,7 +99,6 @@
         </form>
     </div>
 </div>
-
 
 <!-- ADD BIRD MODAL -->
 <div id="addBirdModal" class="modal">
@@ -130,94 +128,131 @@
 </div>
 
 <script>
-
     document.addEventListener("DOMContentLoaded", () => {
-    console.log("SCRIPT LOADED");
+        console.log("HOME SCRIPT LOADED");
 
-    // -----------------------------
-    // ADD BIRD MODAL
-    // -----------------------------
-    const addModal = document.getElementById("addBirdModal");
-    document.getElementById("openAddBirdModal").onclick = () => addModal.style.display = "flex";
-    document.getElementById("closeAddBirdModal").onclick = () => addModal.style.display = "none";
+        // -----------------------------
+        // ADD BIRD MODAL
+        // -----------------------------
+        const addModal = document.getElementById("addBirdModal");
+        const openAddBtn = document.getElementById("openAddBirdModal");
+        const closeAddBtn = document.getElementById("closeAddBirdModal");
+        const addBirdForm = document.getElementById("addBirdForm");
 
-    const addBirdForm = document.getElementById("addBirdForm");
-
-    addBirdForm.onsubmit = async function (e) {
-        e.preventDefault();
-
-        const payload = {
-            commonName: addBirdForm.commonName.value,
-            speciesName: addBirdForm.speciesName.value,
-            color: addBirdForm.color.value,
-            defaultLocation: addBirdForm.defaultLocation.value,
-            description: addBirdForm.description.value
-        };
-
-        const response = await fetch('/api/birds', {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(payload)
-        });
-
-        if (response.ok) {
-            alert("Bird added!");
-            addModal.style.display = "none";
-            window.location.reload();
-        } else {
-            alert("Failed to add bird");
+        // Open "Add Bird" modal
+        if (openAddBtn && addModal) {
+            openAddBtn.onclick = () => addModal.style.display = "flex";
         }
-    };
 
+        // Close "Add Bird" modal
+        if (closeAddBtn && addModal) {
+            closeAddBtn.onclick = () => addModal.style.display = "none";
+        }
 
-    // -----------------------------
-    // OBSERVATION MODAL
-    // -----------------------------
-    const obsModal = document.getElementById("observationModal");
-    const obsForm  = document.getElementById("observationForm");
+        // Submit "Add Bird" form (only if it exists)
+        if (addBirdForm) {
+            addBirdForm.onsubmit = async function (e) {
+                e.preventDefault();
 
-    // OPEN MODAL
-    document.querySelectorAll(".btn-add-observation").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const birdId = btn.dataset.birdId;
-            console.log("Opening observation modal for bird:", birdId);
-            document.getElementById("obsBirdId").value = birdId;
-            obsModal.style.display = "flex";
+                const payload = {
+                    commonName: addBirdForm.commonName.value,
+                    speciesName: addBirdForm.speciesName.value,
+                    color: addBirdForm.color.value,
+                    defaultLocation: addBirdForm.defaultLocation.value,
+                    description: addBirdForm.description.value
+                };
+
+                try {
+                    const response = await fetch('/api/birds', {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (response.ok) {
+                        alert("Bird added!");
+                        if (addModal) {
+                            addModal.style.display = "none";
+                        }
+                        window.location.reload();
+                    } else {
+                        const text = await response.text();
+                        alert("Failed to add bird: " + text);
+                    }
+                } catch (err) {
+                    alert("Error adding bird: " + err);
+                }
+            };
+        }
+
+        // -----------------------------
+        // OBSERVATION MODAL
+        // -----------------------------
+        const obsModal = document.getElementById("observationModal");
+        const obsForm = document.getElementById("observationForm");
+        const closeObsBtn = document.getElementById("closeObservationModal");
+
+        // Open Observation modal from each "Add to Winged Waypoints" button
+        document.querySelectorAll(".btn-add-observation").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const birdId = btn.dataset.birdId;
+                console.log("Opening observation modal for bird:", birdId);
+                const hidden = document.getElementById("obsBirdId");
+                if (hidden) hidden.value = birdId;
+                if (obsModal) obsModal.style.display = "flex";
+            });
         });
+
+        // Close Observation modal
+        if (closeObsBtn && obsModal) {
+            closeObsBtn.onclick = () => {
+                obsModal.style.display = "none";
+            };
+        }
+
+        // Submit Observation form
+        if (obsForm && obsModal) {
+            obsForm.onsubmit = async function (e) {
+                e.preventDefault();
+
+                const birdId = Number(document.getElementById("obsBirdId").value);
+
+                const payload = {
+                    dateSeen: document.getElementById("dateSeen").value,
+                    locationSeen: document.getElementById("locationSeen").value,
+                    notes: document.getElementById("notes").value
+                };
+
+                try {
+                    const res = await fetch(`/api/mylist/${birdId}/observation`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (res.ok) {
+                        alert("Observation added!");
+                        obsModal.style.display = "none";
+                        obsForm.reset();
+                        document.getElementById("obsBirdId").value = "";
+                    } else {
+                        let msg = "Failed to save observation.";
+                        try {
+                            const errBody = await res.json();
+                            if (errBody && errBody.message) {
+                                msg += " " + errBody.message;
+                            }
+                        } catch (_) {
+                            // response not JSON, ignore
+                        }
+                        alert(msg);
+                    }
+                } catch (err) {
+                    alert("Error while saving observation: " + err);
+                }
+            };
+        }
     });
-
-    document.getElementById("closeObservationModal").onclick = () => obsModal.style.display = "none";
-
-    // SAVE OBSERVATION
-        obsForm.onsubmit = async function(e){
-        e.preventDefault();
-
-        const payload = {
-            birdId: Number(document.getElementById("obsBirdId").value),
-            dateSeen: document.getElementById("dateSeen").value,
-            locationSeen: document.getElementById("locationSeen").value,
-            notes: document.getElementById("notes").value
-        };
-
-        console.log("Submitting observation:", payload);
-
-        const res = await fetch("/api/mylist/observation", {
-            method: "PATCH",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (res.ok) {
-            alert("Observation added!");
-            obsModal.style.display = "none";
-            obsForm.reset();
-            document.getElementById("obsBirdId").value = "";
-        } else {
-            alert("Failed to save observation.");
-        }
-    };
-
-});
 </script>
 </body>
 </html>

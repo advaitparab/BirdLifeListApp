@@ -21,11 +21,13 @@ public class MyListEntry {
     @JoinColumn(name = "bird_id", referencedColumnName = "birdId")
     private Bird bird;
 
-
+    @Column(name = "date_seen")
     private LocalDate dateSeen;
 
+    @Column(name = "location_seen")
     private String locationSeen;
 
-    @Column(length = 2000)
+
+    @Column(name = "notes", length = 3000)
     private String notes;
 }

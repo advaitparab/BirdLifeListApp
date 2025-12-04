@@ -5,32 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Can now add birds">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/birdlife.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/birdlife.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/MyListEntryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/MyListEntryDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/ObservationUpsertDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/dto/ObservationUpsertDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/Bird.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/Bird.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/MyListEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/MyListEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/MyListService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/MyListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/controller/MyListController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/dto/MyListEntryDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/dto/MyListEntryDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/dto/ObservationUpsertDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/dto/ObservationUpsertDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/Bird.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry$MyListEntryBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry$MyListEntryBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/entity/MyListEntry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +50,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/advaitparab/BirdLifeListApp.git&quot;,
-    &quot;accountId&quot;: &quot;554c2c7a-5f09-4897-a174-8ef8848b0aaf&quot;
+    &quot;accountId&quot;: &quot;1854bd7e-4676-48f2-ab36-e03047699ca2&quot;
   }
 }</component>
   <component name="ProblemsViewState">

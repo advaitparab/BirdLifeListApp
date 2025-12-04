@@ -21,13 +21,13 @@ public class MyListServiceImpl implements MyListService {
     private final MyListRepository myRepo;
     private final BirdRepository birdRepo;
 
-    private static MyListEntryDto map(MyListEntry e) {
+    private MyListEntryDto toDto(MyListEntry entry) {
         return MyListEntryDto.builder()
-                .entryId(e.getEntryId())
-                .birdId(e.getBird().getBirdId())
-                .dateSeen(e.getDateSeen())
-                .locationSeen(e.getLocationSeen())
-                .notes(e.getNotes())
+                .entryId(entry.getEntryId())
+                .birdId(entry.getBird().getBirdId())
+                .dateSeen(entry.getDateSeen())
+                .locationSeen(entry.getLocationSeen())
+                .notes(entry.getNotes())
                 .build();
     }
 
@@ -35,53 +35,58 @@ public class MyListServiceImpl implements MyListService {
     public List<MyListEntryDto> getMyList() {
         return myRepo.findAll()
                 .stream()
-                .map(MyListServiceImpl::map)
-                .toList();
+                .map(this::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public MyListEntryDto addToMyList(Long birdId) {
+        Bird bird = birdRepo.findById(birdId)
+                .orElseThrow(() -> new RuntimeException("Bird not found: " + birdId));
 
-        Bird b = birdRepo.findById(birdId)
-                .orElseThrow(() -> new RuntimeException("Bird not found"));
-
-
-        Optional<MyListEntry> existing = myRepo.findByBird(b);
+        // If we already have an entry for this bird, just return it
+        Optional<MyListEntry> existing = myRepo.findByBird(bird);
         if (existing.isPresent()) {
-            return map(existing.get());
+            return toDto(existing.get());
         }
 
+        // New list entry for this bird
         MyListEntry entry = MyListEntry.builder()
-                .bird(b)
+                .bird(bird)
                 .build();
 
-        return map(myRepo.save(entry));
+        return toDto(myRepo.save(entry));
     }
 
     @Override
     public void removeFromMyList(Long birdId) {
-        Bird b = birdRepo.findById(birdId)
-                .orElseThrow(() -> new RuntimeException("Bird not found"));
+        Bird bird = birdRepo.findById(birdId)
+                .orElseThrow(() -> new RuntimeException("Bird not found: " + birdId));
 
-        myRepo.findByBird(b).ifPresent(myRepo::delete);
+        myRepo.findByBird(bird).ifPresent(myRepo::delete);
     }
 
     @Override
-    public MyListEntryDto upsertObservation(ObservationUpsertDto p) {
+    public MyListEntryDto upsertObservation(ObservationUpsertDto payload) {
+        if (payload.getBirdId() == null) {
+            throw new IllegalArgumentException("birdId is required");
+        }
 
-        Bird b = birdRepo.findById(p.getBirdId())
-                .orElseThrow(() -> new RuntimeException("Bird not found"));
+        Bird bird = birdRepo.findById(payload.getBirdId())
+                .orElseThrow(() ->
+                        new RuntimeException("Bird not found: " + payload.getBirdId()));
 
-        // Your rule: find entry for bird or create one
-        MyListEntry entry = myRepo.findByBird(b)
-                .orElseGet(() -> MyListEntry.builder().bird(b).build());
+        // Find existing entry for this bird or create one
+        MyListEntry entry = myRepo.findByBird(bird)
+                .orElseGet(() -> MyListEntry.builder()
+                        .bird(bird)   // sets BIRD_ID FK
+                        .build());
 
-        entry.setDateSeen(p.getDateSeen());
-        entry.setLocationSeen(p.getLocationSeen());
-        entry.setNotes(p.getNotes());
+        // Update observation fields
+        entry.setDateSeen(payload.getDateSeen());
+        entry.setLocationSeen(payload.getLocationSeen());
+        entry.setNotes(payload.getNotes());
 
-        return map(myRepo.save(entry));
+        return toDto(myRepo.save(entry));
     }
-
-
 }
