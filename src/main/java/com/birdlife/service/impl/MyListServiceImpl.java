@@ -4,16 +4,13 @@ import com.birdlife.dto.MyListEntryDto;
 import com.birdlife.dto.ObservationUpsertDto;
 import com.birdlife.entity.Bird;
 import com.birdlife.entity.MyListEntry;
-import com.birdlife.entity.User;
 import com.birdlife.repo.BirdRepository;
 import com.birdlife.repo.MyListRepository;
-import com.birdlife.repo.UserRepository;
-import com.birdlife.service.impl.MyListService;
+import com.birdlife.service.MyListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,80 +18,67 @@ import java.util.stream.Collectors;
 public class MyListServiceImpl implements MyListService {
 
     private final MyListRepository myRepo;
-    private final UserRepository userRepo;
     private final BirdRepository birdRepo;
 
-    private static MyListEntryDto map(MyListEntry e) {
-        return new MyListEntryDto(
-                e.getId(),
-                e.getBird().getBirdId(),
-                e.getBird().getCommonName(),
-                e.getBird().getSpeciesName(),
-                e.getBird().getColor(),
-                e.getBird().getDefaultLocation(),
-                e.getBird().getDescription(),
-                e.getDateSeen(),
-                e.getLocationSeen(),
-                e.getNotes()
-        );
+    private MyListEntryDto toDto(MyListEntry entry) {
+        return MyListEntryDto.builder()
+                .entryId(entry.getEntryId())
+                .birdId(entry.getBird().getBirdId())
+                .commonName(entry.getBird().getCommonName())
+                .speciesName(entry.getBird().getSpeciesName())
+                .color(entry.getBird().getColor())
+                .defaultLocation(entry.getBird().getDefaultLocation())
+                .description(entry.getBird().getDescription())
+                .dateSeen(entry.getDateSeen())
+                .locationSeen(entry.getLocationSeen())
+                .notes(entry.getNotes())
+                .build();
     }
-
-
-/* //Attempt to implement user repository - non-functioning but leaving for potential help - delete when solved
-    private User resolveUser(Long userId) {
-        if (userId != null) {
-            return userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found:" + userId));
-        }
-        return userRepo.findByEmail("default@example.com").orElseThrow(() -> new RuntimeException("user not found"));
-    }
-*/
-
-
 
     @Override
-    public List<MyListEntryDto> getMyList(Long userId) {
-        return myRepo.findByUserId(userId).stream()
-                .map(MyListServiceImpl::map)
+    public List<MyListEntryDto> getMyList() {
+        return myRepo.findAll()
+                .stream()
+                .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public MyListEntryDto addToMyList(Long userId, Long birdId) {
-        User u = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        Bird b = birdRepo.findById(birdId).orElseThrow(() -> new RuntimeException("Bird not found"));
+    public MyListEntryDto addToMyList(Long birdId) {
+        Bird bird = birdRepo.findById(birdId)
+                .orElseThrow(() -> new RuntimeException("Bird not found: " + birdId));
 
-        Optional<MyListEntry> existing = myRepo.findByUserAndBird(u, b);
-        if (existing.isPresent()) {
-            return map(existing.get());
+        MyListEntry entry = MyListEntry.builder()
+                .bird(bird)
+                .build();
+
+        return toDto(myRepo.save(entry));
+    }
+
+    @Override
+    public void removeFromMyList(Long entryId) {
+        // Delete a specific sighting row
+        myRepo.findById(entryId).ifPresent(myRepo::delete);
+    }
+
+    @Override
+    public MyListEntryDto upsertObservation(ObservationUpsertDto payload) {
+        if (payload.getBirdId() == null) {
+            throw new IllegalArgumentException("birdId is required");
         }
 
-        MyListEntry e = MyListEntry.builder().user(u).bird(b).build();
-        MyListEntry saved = myRepo.save(e);
-        return map(saved);
-    }
+        Bird bird = birdRepo.findById(payload.getBirdId())
+                .orElseThrow(() -> new RuntimeException("Bird not found: " + payload.getBirdId()));
 
-    @Override
-    public void removeFromMyList(Long userId, Long birdId) {
-        User u = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        Bird b = birdRepo.findById(birdId).orElseThrow(() -> new RuntimeException("Bird not found"));
 
-        Optional<MyListEntry> entryOpt = myRepo.findByUserAndBird(u, b);
-        entryOpt.ifPresent(myRepo::delete);
-    }
+        MyListEntry entry = MyListEntry.builder()
+                .bird(bird)
+                .dateSeen(payload.getDateSeen())
+                .locationSeen(payload.getLocationSeen())
+                .notes(payload.getNotes())
+                .build();
 
-    @Override
-    public MyListEntryDto upsertObservation(Long userId, ObservationUpsertDto p) {
-        User u = userRepo.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        Bird b = birdRepo.findById(p.getBirdId()).orElseThrow(() -> new RuntimeException("Bird not found"));
-
-        MyListEntry e = myRepo.findByUserAndBird(u, b)
-                .orElseGet(() -> MyListEntry.builder().user(u).bird(b).build());
-
-        e.setDateSeen(p.getDateSeen());
-        e.setLocationSeen(p.getLocationSeen());
-        e.setNotes(p.getNotes());
-
-        MyListEntry saved = myRepo.save(e);
-        return map(saved);
+        return toDto(myRepo.save(entry));
     }
 }
+

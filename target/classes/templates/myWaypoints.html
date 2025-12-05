@@ -1,106 +1,113 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>My Winged Waypoints</title>
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
-
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">Winged Waypoints</div>
-        <div class="navlinks">
-            <a th:href="@{/home}">Home</a>
-            <a th:href="@{/myWaypoints}">My Winged Waypoints</a>
-        </div>
-    </nav>
-
-    <!-- Header -->
-    <h1>My Winged Waypoints</h1>
-
-    <!--error-->
-    <div class="alert" th:if="${loadError}">
-        Could not load birds.
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="logo">Winged Waypoints</div>
+    <div class="navlinks">
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/myWaypoints}">My Winged Waypoints</a>
     </div>
+</nav>
 
-    <form method="get" th:action="@{/myWaypoints}">
+<!-- Header -->
+<h1>My Winged Waypoints</h1>
 
-        <!-- Search -->
-        <input type="text" name="q" placeholder="Search birds..." th:value="${q}"/>
+<!-- error -->
+<div class="alert" th:if="${loadError}">
+    Could not load birds.
+</div>
 
-        <!-- Color Filter --> <!--need to add a list of selectable colors-->
-        <select name="color"> <!--onchange="this.form.submit()"-->
-            <option value="">Color</option>
-            <option th:each="color : ${colors}"
-                    th:value="${color}"
-                    th:text="${color}"
-                    th:selected="${color == selectedColor}">
-            </option>
-        </select>
+<form method="get" th:action="@{/myWaypoints}">
 
-        <!-- Location Filter--> <!--need to add a list of selectable locations-->
-        <select name="location"><!--onchange="this.form.submit()"-->
-            <option value="">Location</option>
-            <option th:each="loc : ${locations}"
-                    th:value="${loc}"
-                    th:text="${loc}"
-                    th:selected="${loc == selectedLocation}">
-            </option>
-        </select>
+    <!-- Search -->
+    <input type="text" name="q" placeholder="Search birds..." th:value="${q}" />
 
-        <button type="submit">Search</button>
+    <!-- Color Filter -->
+    <select name="color">
+        <option value="">Color</option>
+        <option th:each="color : ${colors}"
+                th:value="${color}"
+                th:text="${color}"
+                th:selected="${color == selectedColor}">
+        </option>
+    </select>
 
-    </form>
+    <!-- Location Filter -->
+    <select name="location">
+        <option value="">Location</option>
+        <option th:each="loc : ${locations}"
+                th:value="${loc}"
+                th:text="${loc}"
+                th:selected="${loc == selectedLocation}">
+        </option>
+    </select>
 
+    <button type="submit">Search</button>
 
-    <div class="bird-list" th:if="${birds != null}">
+</form>
 
-        <div class="bird-card" th:each="bird : ${waypoints}">
+<!-- Card list of waypoints -->
+<div class="bird-list" th:if="${waypoints != null and !#lists.isEmpty(waypoints)}">
 
-            <div class="card-titles">
-                <h2 th:text="${bird.commonName}">Blue Jay</h2>
-                <h4><span th:text="${bird.speciesName}">Cyanocitta cristata</span></h4>
-            </div>
+    <div class="bird-card" th:each="entry : ${waypoints}">
 
-            <div class="card-body">
-
-                <div class="details">
-                    <p><strong>Color:</strong> <span th:text="${bird.color}">Blue</span></p>
-                    <p><strong>Common Locations:</strong> <span th:text="${bird.defaultLocation}">Ohio</span></p>
-                    <p><strong>Description:</strong> <span th:text="${bird.description}">this is a test description</span></p>
-                    <p><strong>Date Seen:</strong> <span th:text="${entry.dateSeen}">2025-11-17</span></p>
-                </div>
-
-                <div class="buttons">
-                    <a th:href="@{'/birds/details/' + ${bird.birdId}}">Details</a>
-                    <form th:action="@{'/mylist/remove/' + ${bird.birdId}}" method="post">
-                        <button type="submit">Delete</button>
-                    </form>
-                </div>
-
-            </div>
-
+        <div class="card-titles">
+            <h2 th:text="${entry.commonName}">Blue Jay</h2>
+            <h4><span th:text="${entry.speciesName}">Cyanocitta cristata</span></h4>
         </div>
 
+        <div class="card-body">
+
+            <div class="details">
+                <p><strong>Color:</strong>
+                    <span th:text="${entry.color}">Blue</span>
+                </p>
+                <p><strong>Common Locations:</strong>
+                    <span th:text="${entry.defaultLocation}">Ohio</span>
+                </p>
+                <p><strong>Description:</strong>
+                    <span th:text="${entry.description}">this is a test description</span>
+                </p>
+                <p><strong>Date Seen:</strong>
+                    <span th:text="${entry.dateSeen}">2025-11-17</span>
+                </p>
+                <p><strong>Location Seen:</strong>
+                    <span th:text="${entry.locationSeen}">test location</span>
+                </p>
+                <p><strong>Personal Notes:</strong>
+                    <span th:text="${entry.notes}">test notes</span>
+                </p>
+            </div>
+
+            <div class="buttons">
+                <!--<a th:href="@{'/birds/details/' + ${entry.birdId}}">Edit</a>-->
+                <form th:action="@{'/mylist/remove/' + ${entry.entryId}}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+
+        </div>
+
     </div>
 
-    <!--
-        <tr th:each="bird : ${waypoints}">
-            <td th:text="${bird.birdId}">1</td>
-            <td th:text="${bird.commonName}">Blue Jay</td>
-            <td th:text="${bird.speciesName}">Cyanocitta cristata</td>
-            <td th:text="${bird.color}">Blue</td>
-            <td th:text="${bird.defaultLocation}">Ohio</td>
-            <td th:text="${entry.dateSeen}">2025-11-17</td>
-            <td>-->
+</div>
 
-    <p class="alert" th:if="${birds != null and #lists.isEmpty(birds)}">No birds found.</p>
+<!-- Empty state -->
+<p class="alert"
+   th:if="${waypoints == null or #lists.isEmpty(waypoints)}">
+    No waypoints found.
+</p>
+
 </body>
 </html>
 

@@ -68,8 +68,11 @@ public class BirdServiceImpl implements BirdService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
-        birdRepository.deleteById(id);
+        Bird bird = birdRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Bird not found: " + id));
+        birdRepository.delete(bird);
     }
 
     public List<String> getAllColors() {
@@ -77,7 +80,10 @@ public class BirdServiceImpl implements BirdService {
     }
 
     public List<String> getAllLocations() {
-        return birdRepository.findDistinctDefaultLocations();
+        return birdRepository.findDistinctDefaultLocations().stream()
+                .filter(loc -> loc != null && !loc.isBlank())
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     // DTO <-> Entity mapping

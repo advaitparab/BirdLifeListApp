@@ -11,6 +11,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        hbm2ddl.create_namespaces: true
   h2:
     console:
       enabled: true

@@ -1,9 +1,8 @@
 package com.birdlife.config;
 
 import com.birdlife.entity.Bird;
-import com.birdlife.entity.User;
+
 import com.birdlife.repo.BirdRepository;
-import com.birdlife.repo.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,49 +12,18 @@ import java.util.List;
 public class DataInitializer implements CommandLineRunner {
 
     private final BirdRepository birdRepository;
-    //private final UserRepository userRepository;
 
 
-    public DataInitializer(BirdRepository birdRepository) { //, UserRepository userRepository
+
+    public DataInitializer(BirdRepository birdRepository) {
         this.birdRepository = birdRepository;
-        //this.userRepository = userRepository;
+
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        /* Attempt to implement user repository - non-functioning but leaving for potential help - delete when solved
-        if (userRepository.findByEmail("default@email.com").isEmpty()) {
-            User defaultUser = User.builder()
-                    .email("default@email.com")
-                    .displayName("Default User")
-                    .build();
-            User saved = userRepository.save(defaultUser);
-            System.out.println("UserId=" + saved.getId());
-        }*/
-
-
-
         if(birdRepository.count() == 1) { // Only load if DB is empty
-
-            /*Bird cardinal = Bird.builder()
-                    .commonName("Northern Cardinal")
-                    .speciesName("Cardinalis cardinalis")
-                    .color("Red")
-                    .defaultLocation("Woodlands, gardens, backyards")
-                    .description("A medium-sized songbird with a bright red body and a crest on its head. Commonly seen at feeders in Ohio.")
-                    .images(List.of("Cardinal.png"))
-                    .build();
-
-            Bird blueJay = Bird.builder()
-                    .commonName("Blue Jay")
-                    .speciesName("Cyanocitta cristata")
-                    .color("Blue, White, Black")
-                    .defaultLocation("Deciduous forests, suburban areas")
-                    .description("A noisy, intelligent bird with striking blue plumage, a white chest, and a prominent crest.")
-                    .images(List.of("BlueJay.png"))
-                    .build(); */
-
 
             Bird americanGoldfinch = Bird.builder()
                     .commonName("American Goldfinch")

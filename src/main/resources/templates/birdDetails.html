@@ -1,11 +1,11 @@
+<!--
+No Longer need this page kept just in case
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" th:inline="javascript">
 <head>
     <meta charset="UTF-8">
     <title>Bird Details</title>
-
     <link rel="stylesheet" th:href="@{/css/style.css}">
-
 </head>
 <body>
 
@@ -17,55 +17,112 @@
     </div>
 </nav>
 
-<div class="bird-card" th:if="${bird != null}">
 
-
-    <div class="card-titles">
-        <h2 th:text="${bird != null ? bird.commonName : 'Bird Details'}">Blue Jay</h2>
-        <h4><span th:text="${bird.speciesName}">Cyanocitta cristata</span></h4>
-    </div>
-
-    <div class="details">
-        <p><strong>Color:</strong> <span th:text="${bird.color}">Blue</span></p>
-        <p><strong>Common Locations:</strong> <span th:text="${bird.defaultLocation}">Ohio</span></p>
-        <p><strong>Description:</strong> <span th:text="${bird.description}">this is a test description</span></p>
-
-        <div class="notes">
-            <!-- Personal Notes -->
-            <label for="notes"><strong>Personal Notes:</strong></label><br>
-            <textarea id="notes" name="notes" rows="3" cols="50" th:text="${bird.notes}"></textarea>
+    <form id="editBirdForm">
+        <div class="card-titles">
+            <h2 th:text="${bird != null ? bird.commonName : 'Bird Details'}">Blue Jay</h2>
+            <h4><span th:text="${bird.speciesName}">Cyanocitta cristata</span></h4>
         </div>
 
-        <!-- Date Seen - uncomment when the connections have been made
-        <div class="date">
-
-            <label><strong>Date Seen:</strong>
-                <input type="date" name="dateSeen" />
-            </label><br>
-        </div>-->
-
-        <!-- Images - uncomment when the connections have been made - more styling may be needed
-        <div class="image">
-            <label><strong>Photos:</strong>
-                <div>
-                    <img th:each="img : ${bird.images}" th:src="@{${img.url}}" alt="Bird photo" width="200" />
-                </div>
-            </label><br>
+        <div class="details">
+            <p><strong>Color:</strong> <span th:text="${bird.color}"></span></p>
+            <p><strong>Default Location:</strong> <span th:text="${bird.defaultLocation}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${bird.description}"></span></p>
         </div>
-    </div>-->
 
-    <div class="details-buttons">
-        <form th:action="@{'/birds/save/' + ${bird.birdId}}" method="post">
-            <button type="submit">Save</button>
+        <form id="editObservationForm">
+
+            <div class="details">
+                <p><strong>Date Seen:</strong>
+                    <input type="date"
+                           name="dateSeen"
+                           th:value="${bird.dateSeen}">
+                </p>
+
+                <p><strong>Location Seen:</strong>
+                    <input type="text"
+                           name="locationSeen"
+                           th:value="${bird.locationSeen}">
+                </p>
+
+                <p><strong>Notes:</strong>
+                    <textarea name="notes"
+                              rows="3"
+                              th:text="${bird.notes}"></textarea>
+                </p>
+            </div>
+
+            <div class="details-buttons">
+                <button type="submit">Save Changes</button>
+                <button type="button" id="deleteBirdBtn">Delete Bird</button>
+                <a href="#" onclick="history.back(); return false;">Back</a>
+            </div>
         </form>
-        <a href="#" onclick="history.back(); return false;">Back</a>
-    </div>
 
-</div>
 
-    <section class="alert" th:if="${bird == null}">
-        <p>Bird not found.</p>
-    </section>
-</div>
+<section class="alert" th:if="${bird == null}">
+    <p>Bird not found.</p>
+</section>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const form = document.getElementById("editBirdForm");
+    const deleteBtn = document.getElementById("deleteBirdBtn");
+    const birdId = [[${bird.birdId}]]; // Thymeleaf replaces this with the actual ID
+
+    form.onsubmit = async function(e) {
+        e.preventDefault();
+
+        const payload = {
+            commonName: form.commonName.value,
+            speciesName: form.speciesName.value,
+            color: form.color.value,
+            defaultLocation: form.defaultLocation.value,
+            description: form.description.value
+        };
+
+        try {
+            const response = await fetch(`/api/birds/${birdId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert("Bird updated!");
+                window.location.href = '/home';
+            } else {
+                const text = await response.text();
+                alert("Failed to update bird: " + text);
+            }
+        } catch (err) {
+            alert("Error: " + err);
+        }
+    };
+
+    deleteBtn.onclick = async function() {
+        if (!confirm("Are you sure you want to delete this bird?")) return;
+
+        try {
+            const response = await fetch(`/api/birds/${birdId}`, {
+                method: "DELETE"
+            });
+
+            if (response.ok) {
+                alert("Bird deleted!");
+                window.location.href = '/home';
+            } else {
+                const text = await response.text();
+                alert("Failed to delete bird: " + text);
+            }
+        } catch (err) {
+            alert("Error: " + err);
+        }
+    };
+    /*]]>*/
+</script>
 </body>
 </html>
+-->

@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon">
+    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Fixed Search and Drop down on My Winged Waypoints now works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/birdlife.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/birdlife.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/config/DataInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/BirdController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/BirdController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/MyListEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/entity/MyListEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/birdDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/birdDetails.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +23,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -41,12 +42,12 @@
     &quot;assignee&quot;: &quot;Harshpatel0815&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/advaitparab/BirdLifeListApp.git",
-    "accountId": "6a3a6a44-02e9-492c-8c3b-ac42397789ea"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/advaitparab/BirdLifeListApp.git&quot;,
+    &quot;accountId&quot;: &quot;1854bd7e-4676-48f2-ab36-e03047699ca2&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -61,6 +62,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.BirdlifeApplication.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
@@ -68,7 +70,7 @@
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/harsh/OneDrive/Documents/GitHub/BirdLifeListApp&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/harsh/OneDrive - University of Cincinnati/Documents/GitHub/BirdLifeListApp2&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/harsh/IdeaProjects/MyWingedWaypoints/src/main/java/org/example/Main.java&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
@@ -102,13 +104,6 @@
         <item itemvalue="Application.BirdlifeApplication" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -183,7 +178,39 @@
       <option name="project" value="LOCAL" />
       <updated>1763506440499</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Removed User">
+      <option name="closed" value="true" />
+      <created>1764553803434</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1764553803435</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Can now add birds">
+      <option name="closed" value="true" />
+      <created>1764557387359</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1764557387359</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Finished final changes of fixing delete button and getting description to be shown">
+      <option name="closed" value="true" />
+      <created>1764900071350</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1764900071350</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fixed Search and Drop down on My Winged Waypoints now works">
+      <option name="closed" value="true" />
+      <created>1764901704219</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1764901704219</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -205,6 +232,11 @@
     <MESSAGE value="Details page is coming alone still needs final touches and layout fixes" />
     <MESSAGE value="Details page style is done" />
     <MESSAGE value="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon" />
-    <option name="LAST_COMMIT_MESSAGE" value="Details page, My winged waypoints page, and details page style is done. For Details a few more things will need to be added later after the connection for date and images have been made. Will fix the centering on details page here soon" />
+    <MESSAGE value="Removed User" />
+    <MESSAGE value="Can now add birds" />
+    <MESSAGE value="Fixed some formatting with buttons on home page and modals" />
+    <MESSAGE value="Finished final changes of fixing delete button and getting description to be shown" />
+    <MESSAGE value="Fixed Search and Drop down on My Winged Waypoints now works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Search and Drop down on My Winged Waypoints now works" />
   </component>
 </project>
