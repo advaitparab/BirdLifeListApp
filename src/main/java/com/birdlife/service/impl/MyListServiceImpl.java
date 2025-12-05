@@ -29,6 +29,7 @@ public class MyListServiceImpl implements MyListService {
                 .speciesName(entry.getBird().getSpeciesName())
                 .color(entry.getBird().getColor())
                 .defaultLocation(entry.getBird().getDefaultLocation())
+                .description(entry.getBird().getDescription())
                 .dateSeen(entry.getDateSeen())
                 .locationSeen(entry.getLocationSeen())
                 .notes(entry.getNotes())

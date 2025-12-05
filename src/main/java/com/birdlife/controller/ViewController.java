@@ -70,6 +70,14 @@ public class ViewController {
         return "myWaypoints";
     }
 
+    // ✅ NEW – handles the Delete button
+    @PostMapping("/mylist/remove/{birdId}")
+    public String removeFromMyWaypoints(@PathVariable("birdId") Long birdId) {
+        myListService.removeFromMyList(birdId);
+        return "redirect:/myWaypoints";
+    }
+
+
     @GetMapping("/birds/details/{id}")
     public String birdDetails(@PathVariable("id") Long id, Model model) {
         model.addAttribute("bird", birdService.getById(id));
