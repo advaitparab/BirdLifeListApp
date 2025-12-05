@@ -29,7 +29,7 @@ public class MyListServiceImpl implements MyListService {
                 .speciesName(entry.getBird().getSpeciesName())
                 .color(entry.getBird().getColor())
                 .defaultLocation(entry.getBird().getDefaultLocation())
-                .description(entry.getBird().getDescription())
+                .description(entry.getBird().getDescription())   // ✅ description mapped
                 .dateSeen(entry.getDateSeen())
                 .locationSeen(entry.getLocationSeen())
                 .notes(entry.getNotes())
@@ -49,13 +49,11 @@ public class MyListServiceImpl implements MyListService {
         Bird bird = birdRepo.findById(birdId)
                 .orElseThrow(() -> new RuntimeException("Bird not found: " + birdId));
 
-        // If we already have an entry for this bird, just return it
         Optional<MyListEntry> existing = myRepo.findByBird(bird);
         if (existing.isPresent()) {
             return toDto(existing.get());
         }
 
-        // New list entry for this bird
         MyListEntry entry = MyListEntry.builder()
                 .bird(bird)
                 .build();
@@ -78,16 +76,13 @@ public class MyListServiceImpl implements MyListService {
         }
 
         Bird bird = birdRepo.findById(payload.getBirdId())
-                .orElseThrow(() ->
-                        new RuntimeException("Bird not found: " + payload.getBirdId()));
+                .orElseThrow(() -> new RuntimeException("Bird not found: " + payload.getBirdId()));
 
-        // Find existing entry for this bird or create one
         MyListEntry entry = myRepo.findByBird(bird)
                 .orElseGet(() -> MyListEntry.builder()
-                        .bird(bird)   // sets BIRD_ID FK
+                        .bird(bird)
                         .build());
 
-        // Update observation fields
         entry.setDateSeen(payload.getDateSeen());
         entry.setLocationSeen(payload.getLocationSeen());
         entry.setNotes(payload.getNotes());
@@ -95,3 +90,4 @@ public class MyListServiceImpl implements MyListService {
         return toDto(myRepo.save(entry));
     }
 }
+

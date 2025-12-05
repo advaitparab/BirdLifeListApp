@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
 public class ViewController {
@@ -64,11 +66,81 @@ public class ViewController {
     }
 
     @GetMapping("/myWaypoints")
-    public String myWaypoints(Model model) {
-        List<MyListEntryDto> waypoints = myListService.getMyList();
-        model.addAttribute("waypoints", waypoints);
+    public String myWaypoints(@RequestParam(name = "q", required = false) String q,
+                              @RequestParam(name = "color", required = false) String color,
+                              @RequestParam(name = "location", required = false) String location,
+                              Model model) {
+
+        if (q != null && q.isBlank()) q = null;
+        if (color != null && color.isBlank()) color = null;
+        if (location != null && location.isBlank()) location = null;
+
+        // ✅ FIX for lambda “must be effectively final”
+        final String qFinal = q;
+        final String colorFinal = color;
+        final String locationFinal = location;
+
+        // All waypoints
+        List<MyListEntryDto> allWaypoints = myListService.getMyList();
+
+        // Build dropdown lists
+        List<String> colors = allWaypoints.stream()
+                .map(MyListEntryDto::getColor)
+                .filter(x -> x != null && !x.isBlank())
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+
+        List<String> locations = allWaypoints.stream()
+                .map(MyListEntryDto::getDefaultLocation)
+                .filter(x -> x != null && !x.isBlank())
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+
+        // Apply filters
+        List<MyListEntryDto> filtered = allWaypoints.stream()
+                .filter(entry -> {
+
+                    if (colorFinal != null) {
+                        if (entry.getColor() == null ||
+                                !entry.getColor().equalsIgnoreCase(colorFinal)) {
+                            return false;
+                        }
+                    }
+
+                    if (locationFinal != null) {
+                        if (entry.getDefaultLocation() == null ||
+                                !entry.getDefaultLocation().equalsIgnoreCase(locationFinal)) {
+                            return false;
+                        }
+                    }
+
+                    if (qFinal != null) {
+                        String searchable = (
+                                (entry.getCommonName() == null ? "" : entry.getCommonName()) + " " +
+                                        (entry.getSpeciesName() == null ? "" : entry.getSpeciesName()) + " " +
+                                        (entry.getDescription() == null ? "" : entry.getDescription()) + " " +
+                                        (entry.getDefaultLocation() == null ? "" : entry.getDefaultLocation())
+                        ).toLowerCase();
+
+                        return searchable.contains(qFinal.toLowerCase());
+                    }
+
+                    return true;
+                })
+                .collect(Collectors.toList());
+
+        model.addAttribute("waypoints", filtered);
+        model.addAttribute("q", q);
+        model.addAttribute("colors", colors);
+        model.addAttribute("locations", locations);
+        model.addAttribute("selectedColor", color);
+        model.addAttribute("selectedLocation", location);
+
         return "myWaypoints";
     }
+
 
     // ✅ NEW – handles the Delete button
     @PostMapping("/mylist/remove/{birdId}")
