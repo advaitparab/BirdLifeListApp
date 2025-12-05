@@ -1,3 +1,5 @@
+<!--
+No Longer need this page kept just in case
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:inline="javascript">
 <head>
@@ -15,40 +17,48 @@
     </div>
 </nav>
 
-<div class="bird-card" th:if="${bird != null}">
 
     <form id="editBirdForm">
         <div class="card-titles">
-            <h2>
-                <input type="text" name="commonName" th:value="${bird.commonName}" required>
-            </h2>
-            <h4>
-                <input type="text" name="speciesName" th:value="${bird.speciesName}" required>
-            </h4>
+            <h2 th:text="${bird != null ? bird.commonName : 'Bird Details'}">Blue Jay</h2>
+            <h4><span th:text="${bird.speciesName}">Cyanocitta cristata</span></h4>
         </div>
 
         <div class="details">
-            <p>
-                <strong>Color:</strong>
-                <input type="text" name="color" th:value="${bird.color}" required>
-            </p>
-            <p>
-                <strong>Common Locations:</strong>
-                <input type="text" name="defaultLocation" th:value="${bird.defaultLocation}" required>
-            </p>
-            <p>
-                <strong>Description:</strong>
-                <textarea name="description" required th:text="${bird.description}"></textarea>
-            </p>
+            <p><strong>Color:</strong> <span th:text="${bird.color}"></span></p>
+            <p><strong>Default Location:</strong> <span th:text="${bird.defaultLocation}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${bird.description}"></span></p>
         </div>
 
-        <div class="details-buttons">
-            <button type="submit">Save Changes</button>
-            <button type="button" id="deleteBirdBtn">Delete Bird</button>
-            <a href="#" onclick="history.back(); return false;">Back</a>
-        </div>
-    </form>
-</div>
+        <form id="editObservationForm">
+
+            <div class="details">
+                <p><strong>Date Seen:</strong>
+                    <input type="date"
+                           name="dateSeen"
+                           th:value="${bird.dateSeen}">
+                </p>
+
+                <p><strong>Location Seen:</strong>
+                    <input type="text"
+                           name="locationSeen"
+                           th:value="${bird.locationSeen}">
+                </p>
+
+                <p><strong>Notes:</strong>
+                    <textarea name="notes"
+                              rows="3"
+                              th:text="${bird.notes}"></textarea>
+                </p>
+            </div>
+
+            <div class="details-buttons">
+                <button type="submit">Save Changes</button>
+                <button type="button" id="deleteBirdBtn">Delete Bird</button>
+                <a href="#" onclick="history.back(); return false;">Back</a>
+            </div>
+        </form>
+
 
 <section class="alert" th:if="${bird == null}">
     <p>Bird not found.</p>
@@ -118,3 +128,4 @@
 
 </body>
 </html>
+-->

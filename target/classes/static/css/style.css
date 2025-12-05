@@ -227,21 +227,3 @@
   display: flex;
   flex-direction: column;
 }
-
-/*Details Page*/
-.bird-card .details textarea {
-  max-width: 70%;       /* keep it from spanning full card */
-  min-height: 6rem;     /* give enough space for editing */
-  resize: vertical;     /* allow vertical resize only */
-}
-
-.details-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-.details-buttons button,
-.details-buttons a {
-  flex: 0 0 auto; /* prevent stretching */
-}
