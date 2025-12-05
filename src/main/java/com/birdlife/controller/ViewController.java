@@ -35,7 +35,7 @@ public class ViewController {
                        @RequestParam(name = "color", required = false) String color,
                        @RequestParam(name = "location", required = false) String location,
                        Model model) {
-
+        // ===Error Handling===
         if (q != null && q.isBlank()) q = null;
         if (color != null && color.isBlank()) color = null;
         if (location != null && location.isBlank()) location = null;
@@ -48,6 +48,8 @@ public class ViewController {
         } catch (Exception ex) {
             loadError = ex.getMessage();
         }
+
+        // Data retrieval
 
         model.addAttribute("birds", birds);
         model.addAttribute("q", q);
@@ -75,7 +77,7 @@ public class ViewController {
         if (color != null && color.isBlank()) color = null;
         if (location != null && location.isBlank()) location = null;
 
-        // ✅ FIX for lambda “must be effectively final”
+
         final String qFinal = q;
         final String colorFinal = color;
         final String locationFinal = location;
@@ -142,20 +144,21 @@ public class ViewController {
     }
 
 
-    // ✅ NEW – handles the Delete button
+    // Delete
     @PostMapping("/mylist/remove/{birdId}")
     public String removeFromMyWaypoints(@PathVariable("birdId") Long birdId) {
         myListService.removeFromMyList(birdId);
         return "redirect:/myWaypoints";
     }
 
-
+    // Opens details page
     @GetMapping("/birds/details/{id}")
     public String birdDetails(@PathVariable("id") Long id, Model model) {
         model.addAttribute("bird", birdService.getById(id));
         return "birdDetails";
     }
 
+    // Create bird
     @PostMapping("/birds/save/{id}")
     public String saveBird(@PathVariable("id") Long id,
                            @RequestParam("commonName") String commonName,
@@ -178,6 +181,7 @@ public class ViewController {
         return "redirect:/birds/details/" + id;
     }
 
+    //Delete bird
     @PostMapping("/birds/delete/{id}")
     public String deleteBird(@PathVariable("id") Long id) {
         birdService.delete(id);

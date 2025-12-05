@@ -48,7 +48,6 @@ public class MyListServiceImpl implements MyListService {
         Bird bird = birdRepo.findById(birdId)
                 .orElseThrow(() -> new RuntimeException("Bird not found: " + birdId));
 
-        // 🚨 IMPORTANT: always create a NEW entry, don't reuse an old one.
         MyListEntry entry = MyListEntry.builder()
                 .bird(bird)
                 .build();
@@ -71,8 +70,7 @@ public class MyListServiceImpl implements MyListService {
         Bird bird = birdRepo.findById(payload.getBirdId())
                 .orElseThrow(() -> new RuntimeException("Bird not found: " + payload.getBirdId()));
 
-        // 🔁 Also: create a NEW entry for each observation,
-        // instead of "findByBird" + overwrite.
+
         MyListEntry entry = MyListEntry.builder()
                 .bird(bird)
                 .dateSeen(payload.getDateSeen())

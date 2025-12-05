@@ -27,7 +27,6 @@ public class MyListEntry {
     @Column(name = "location_seen")
     private String locationSeen;
 
-
     @Column(name = "notes", length = 3000)
     private String notes;
 }

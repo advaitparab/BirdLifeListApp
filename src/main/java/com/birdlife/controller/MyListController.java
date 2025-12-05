@@ -30,7 +30,7 @@ public class MyListController {
         return service.addToMyList(birdId);
     }
 
-    // ✅ POST /api/mylist/remove/{entryId}  (delete specific sighting)
+    // POST /api/mylist/remove/{entryId}  (delete specific sighting)
     @PostMapping("/remove/{entryId}")
     public ResponseEntity<Void> remove(@PathVariable("entryId") Long entryId) {
         service.removeFromMyList(entryId);
