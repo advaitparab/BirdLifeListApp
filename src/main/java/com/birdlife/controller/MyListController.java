@@ -30,10 +30,10 @@ public class MyListController {
         return service.addToMyList(birdId);
     }
 
-    // DELETE /api/mylist/remove/{birdId}
-    @DeleteMapping("/remove/{birdId}")
-    public ResponseEntity<Void> remove(@PathVariable("birdId") Long birdId) {
-        service.removeFromMyList(birdId);
+    // ✅ POST /api/mylist/remove/{entryId}  (delete specific sighting)
+    @PostMapping("/remove/{entryId}")
+    public ResponseEntity<Void> remove(@PathVariable("entryId") Long entryId) {
+        service.removeFromMyList(entryId);
         return ResponseEntity.noContent().build();
     }
 
@@ -51,7 +51,6 @@ public class MyListController {
             @PathVariable("birdId") Long birdId,
             @Valid @RequestBody ObservationUpsertDto payload) {
 
-        // Make sure the service always has the birdId
         payload.setBirdId(birdId);
         return service.upsertObservation(payload);
     }

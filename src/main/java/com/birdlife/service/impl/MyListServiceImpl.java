@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,7 +28,7 @@ public class MyListServiceImpl implements MyListService {
                 .speciesName(entry.getBird().getSpeciesName())
                 .color(entry.getBird().getColor())
                 .defaultLocation(entry.getBird().getDefaultLocation())
-                .description(entry.getBird().getDescription())   // ✅ description mapped
+                .description(entry.getBird().getDescription())
                 .dateSeen(entry.getDateSeen())
                 .locationSeen(entry.getLocationSeen())
                 .notes(entry.getNotes())
@@ -49,11 +48,7 @@ public class MyListServiceImpl implements MyListService {
         Bird bird = birdRepo.findById(birdId)
                 .orElseThrow(() -> new RuntimeException("Bird not found: " + birdId));
 
-        Optional<MyListEntry> existing = myRepo.findByBird(bird);
-        if (existing.isPresent()) {
-            return toDto(existing.get());
-        }
-
+        // 🚨 IMPORTANT: always create a NEW entry, don't reuse an old one.
         MyListEntry entry = MyListEntry.builder()
                 .bird(bird)
                 .build();
@@ -62,11 +57,9 @@ public class MyListServiceImpl implements MyListService {
     }
 
     @Override
-    public void removeFromMyList(Long birdId) {
-        Bird bird = birdRepo.findById(birdId)
-                .orElseThrow(() -> new RuntimeException("Bird not found: " + birdId));
-
-        myRepo.findByBird(bird).ifPresent(myRepo::delete);
+    public void removeFromMyList(Long entryId) {
+        // Delete a specific sighting row
+        myRepo.findById(entryId).ifPresent(myRepo::delete);
     }
 
     @Override
@@ -78,14 +71,14 @@ public class MyListServiceImpl implements MyListService {
         Bird bird = birdRepo.findById(payload.getBirdId())
                 .orElseThrow(() -> new RuntimeException("Bird not found: " + payload.getBirdId()));
 
-        MyListEntry entry = myRepo.findByBird(bird)
-                .orElseGet(() -> MyListEntry.builder()
-                        .bird(bird)
-                        .build());
-
-        entry.setDateSeen(payload.getDateSeen());
-        entry.setLocationSeen(payload.getLocationSeen());
-        entry.setNotes(payload.getNotes());
+        // 🔁 Also: create a NEW entry for each observation,
+        // instead of "findByBird" + overwrite.
+        MyListEntry entry = MyListEntry.builder()
+                .bird(bird)
+                .dateSeen(payload.getDateSeen())
+                .locationSeen(payload.getLocationSeen())
+                .notes(payload.getNotes())
+                .build();
 
         return toDto(myRepo.save(entry));
     }

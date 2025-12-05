@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Finished final changes of fixing delete button and getting description to be shown">
+    <list default="true" id="5174138d-9c53-4c14-9918-f4eee338b065" name="Changes" comment="Fixed Search and Drop down on My Winged Waypoints now works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/birdlife.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/birdlife.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/ViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/controller/MyListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/birdlife/service/impl/MyListServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/controller/ViewController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/myWaypoints.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/birdlife/service/impl/MyListServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/myWaypoints.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764900071350</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Fixed Search and Drop down on My Winged Waypoints now works">
+      <option name="closed" value="true" />
+      <created>1764901704219</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1764901704219</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -226,6 +235,7 @@
     <MESSAGE value="Can now add birds" />
     <MESSAGE value="Fixed some formatting with buttons on home page and modals" />
     <MESSAGE value="Finished final changes of fixing delete button and getting description to be shown" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished final changes of fixing delete button and getting description to be shown" />
+    <MESSAGE value="Fixed Search and Drop down on My Winged Waypoints now works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Search and Drop down on My Winged Waypoints now works" />
   </component>
 </project>

@@ -91,7 +91,7 @@
 
             <div class="buttons">
                 <!--<a th:href="@{'/birds/details/' + ${entry.birdId}}">Edit</a>-->
-                <form th:action="@{'/mylist/remove/' + ${entry.birdId}}" method="post">
+                <form th:action="@{'/mylist/remove/' + ${entry.entryId}}" method="post">
                     <button type="submit">Delete</button>
                 </form>
             </div>
