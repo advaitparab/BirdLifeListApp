@@ -137,10 +137,10 @@ A birding life list is a collection of the bird species you have seen in the wil
 
 ## Team Members and Roles
 *All roles will help/share the workload for all roles*
-- UI Specialist: Harsh Patel
-- Business Logic/Persistence: Sydney Schalk
-- DevOps/Github Admin: Advait Parab
-- Product Owner/Scrum Master: Grace Holscher
+- UI Specialist/Scrum Master: Grace Holscher
+- Business Logic/Persistence Specialist: Harsh Patel
+- Database /Persistence Specialist: Sydney Schalk
+- DevOps/Github Admin/Database: Advait Parab
 
 ## Milestones
 
